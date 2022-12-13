@@ -1,4 +1,9 @@
 package de.hhn.maXx.maXxUtils;
 
-public class Direction {
+public enum Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+    DIAGONAL
 }

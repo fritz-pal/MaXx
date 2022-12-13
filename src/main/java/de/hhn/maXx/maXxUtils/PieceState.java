@@ -1,4 +1,8 @@
 package de.hhn.maXx.maXxUtils;
 
-public class PieceState {
+public enum PieceState {
+    WHITE,
+    BLACK,
+    EMPTY,
+    FRACTION
 }
