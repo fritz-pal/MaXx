@@ -1,4 +1,4 @@
-package de.hhn.maXx.frontend;
+package de.hhn.maXx.view;
 
 public class FieldButton {
 }
