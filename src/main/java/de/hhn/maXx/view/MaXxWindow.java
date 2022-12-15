@@ -17,6 +17,8 @@ public class MaXxWindow extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(true);
+        setIconImage(new ImageIcon("src/main/resources/icon.png").getImage());
+        setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(0x29, 0x2B, 0x2F));
 
         //field buttons

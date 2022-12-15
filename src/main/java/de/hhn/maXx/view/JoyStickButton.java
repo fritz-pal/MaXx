@@ -7,14 +7,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 
 public class JoyStickButton extends JButton {
-    JLabel symbol;
-    private MaXxWindow window;
-    private Direction direction;
+    Image image;
+    private final MaXxWindow window;
+    private final Direction direction;
     private int x;
     private int y;
     private boolean hovering = false;
+    private boolean pressed = false;
 
     public JoyStickButton(MaXxWindow window, Direction direction) {
         this.window = window;
@@ -26,18 +28,10 @@ public class JoyStickButton extends JButton {
         this.setContentAreaFilled(false);
         this.setOpaque(true);
         this.setLayout(null);
-        this.setBackground(new Color(0x29, 0x2B, 0x2F));
+        this.setBackground(null);
         this.addMouseListener(mouseListener());
 
-        //add symbol
-        symbol = new JLabel();
-        symbol.setBounds(0, 0, 40, 40);
-        symbol.setForeground(new Color(0x96, 0x98, 0x9D));
-        symbol.setFont(new Font("Jetbrains Mono", Font.PLAIN, 10));
-        symbol.setVerticalAlignment(JLabel.CENTER);
-        symbol.setHorizontalAlignment(JLabel.CENTER);
-        this.add(symbol);
-
+        image = new ImageIcon("src/main/resources/" + direction.toString().toLowerCase() + ".png").getImage();
         this.directionSettings();
         this.setBounds(x, y, 40, 40);
         window.getContentPane().add(this);
@@ -51,18 +45,12 @@ public class JoyStickButton extends JButton {
             case UP -> {
                 x -= 50;
                 y -= 50;
-                symbol.setText("UP");
             }
             case DOWN -> {
                 x -= 50;
                 y += 50;
-                symbol.setText("DOWN");
             }
-            case LEFT -> {
-                x -= 100;
-                symbol.setText("LEFT");
-            }
-            case RIGHT -> symbol.setText("RIGHT");
+            case LEFT -> x -= 100;
             case DIAGONAL -> y -= 50;
         }
     }
@@ -73,14 +61,14 @@ public class JoyStickButton extends JButton {
         super.paint(g);
         directionSettings();
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(new Color(114, 137, 218));
         if (hovering) {
-            g2d.setColor(new Color(0x63, 0x70, 0xF4));
             g2d.fill(new RoundRectangle2D.Double(-1, -1, getWidth(), getHeight(), 25, 25));
         } else {
-            g2d.setColor(new Color(0x36, 0x39, 0x3F));
             g2d.fill(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, 50, 50));
         }
-        this.setBounds(x, y, 40, 40);
+        g2d.drawImage(image, 0, 0, 40, 40, null);
+        this.setBounds(x, y + (pressed ? 2 : 0), 40, 40);
     }
 
     private MouseListener mouseListener() {
@@ -91,10 +79,12 @@ public class JoyStickButton extends JButton {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                pressed = true;
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
+                pressed = false;
             }
 
             @Override
@@ -105,6 +95,7 @@ public class JoyStickButton extends JButton {
             @Override
             public void mouseExited(MouseEvent e) {
                 hovering = false;
+                pressed = false;
             }
         };
     }
