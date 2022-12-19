@@ -17,11 +17,4 @@ public class InputManager {
         }
         return dir;
     }
-
-    private static boolean isViableDirection(String str) {
-        return switch (str.toLowerCase()) {
-            case "s", "n", "e", "w", "d" -> true;
-            default -> false;
-        };
-    }
 }
