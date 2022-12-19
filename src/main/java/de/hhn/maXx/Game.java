@@ -1,15 +1,16 @@
 package de.hhn.maXx;
 
+import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.stateMachine.StateManager;
 import de.hhn.maXx.util.GameStatus;
 
 public class Game {
     private static Game instance = null;
-    private Board board;
+    private final Board board;
     private Fraction scoreW;
     private Fraction scoreB;
-    private StateManager stateManager;
+    private final StateManager stateManager;
 
     private Game() {
         board = new Board();
@@ -37,15 +38,21 @@ public class Game {
     }
 
     public void addScoreBlack(Fraction fraction) {
-        this.scoreB = scoreB.add(fraction);
+        scoreB = scoreB.add(fraction);
 
     }
 
     public void addScoreWhite(Fraction fraction) {
-        this.scoreW.add(fraction);
+        scoreW = scoreW.add(fraction);
     }
 
     public GameStatus tick() {
+        Direction direction = InputManager.getInput(getInstance().getStateManager().isWhitesTurn() ? "White: " : "Black: ");
+        getInstance().getStateManager().move(direction);
+        if (scoreB.doubleValue() >= 53)
+            return GameStatus.BLACK_WIN;
+        if (scoreW.doubleValue() >= 53)
+            return GameStatus.WHITE_WIN;
         return GameStatus.CONTINUE;
     }
 

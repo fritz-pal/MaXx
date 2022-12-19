@@ -11,6 +11,11 @@ public class StateManager implements State {
     }
 
     @Override
+    public boolean isWhitesTurn() {
+        return currentState.isWhitesTurn();
+    }
+
+    @Override
     public void move(Direction direction) {
         currentState.move(direction);
     }
