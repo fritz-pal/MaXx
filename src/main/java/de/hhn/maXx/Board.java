@@ -74,22 +74,23 @@ public class Board {
             }
         }
         if (movePossible(xpos, ypos)) {
-            if (getFieldState(xpos, ypos).equals(FieldState.FRACTION))
-                Game.getInstance().addScoreWhite(grid[xpos][ypos].getFraction());
             if (isWhite) {
+                if (getFieldState(xpos, ypos).equals(FieldState.FRACTION))
+                    Game.getInstance().addScoreWhite(grid[xpos][ypos].getFraction());
                 setFieldState(wx, wy, FieldState.EMPTY);
                 setFieldState(xpos, ypos, FieldState.WHITE);
                 wx = xpos;
                 wy = ypos;
             } else {
+                if (getFieldState(xpos, ypos).equals(FieldState.FRACTION))
+                    Game.getInstance().addScoreBlack(grid[xpos][ypos].getFraction());
                 setFieldState(bx, by, FieldState.EMPTY);
                 setFieldState(xpos, ypos, FieldState.BLACK);
                 bx = xpos;
                 by = ypos;
             }
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }
