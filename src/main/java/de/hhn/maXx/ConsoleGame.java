@@ -1,12 +1,11 @@
-package de.hhn.maXx.view;
+package de.hhn.maXx;
 
 import de.hhn.maXx.maXxUtils.FieldState;
 import de.hhn.maXx.maXxUtils.Fraction;
 
-public class ConsoleGame implements Game {
+public class ConsoleGame{
 
-    @Override
     public void update(int x, int y, Fraction fraction, FieldState state) {
-
+        //TODO
     }
 }

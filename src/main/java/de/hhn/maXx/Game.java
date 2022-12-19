@@ -4,7 +4,7 @@ public class Game {
     private static Game instance = null;
     private Game(){}
 
-    public Game getInstance(){
+    public static Game getInstance(){
         if(instance == null){
             instance = new Game();
         }

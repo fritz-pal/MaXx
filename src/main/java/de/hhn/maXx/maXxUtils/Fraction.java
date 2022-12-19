@@ -1,51 +1,138 @@
 package de.hhn.maXx.maXxUtils;
 
-import jdk.jshell.spi.ExecutionControl.NotImplementedException;
-
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class Fraction implements Cloneable {
-    private BigInteger nominator;
-    private BigInteger denominator;
+/**
+ * Definieren und implementieren Sie als Subklasse von Number die immutable
+ * Klasse Fraction, die den Datentyp "Rationale Zahl" (Bruch mit ganzzahligem
+ * Zähler und Nenner = BigInteger) realisiert und das Interface Comparable
+ * implementiert.
+ *
+ * @author Henri Staudenrausch
+ * @version 2, 12.12.2022
+ **/
+public class Fraction extends Number implements Comparable<Fraction> {
+    protected BigInteger numerator;
+    protected BigInteger denominator;
 
-    public Fraction(BigInteger nominator, BigInteger denominator) {
-        //TODO
+    public Fraction(BigInteger numerator, BigInteger denominator) {
+        if (denominator.equals(BigInteger.ZERO)) throw new ArithmeticException("Denominator must not be zero!");
+        BigInteger gcd = numerator.gcd(denominator);
+        BigInteger newNum = numerator.divide(gcd);
+        BigInteger newDen = denominator.divide(gcd);
+        if (newDen.compareTo(BigInteger.ZERO) < 0) {
+            newNum = newNum.negate();
+            newDen = newDen.negate();
+        }
+        this.numerator = newNum;
+        this.denominator = newDen;
     }
 
-    public Fraction(int nominator, int denominator) {
-        //TODO
+    public Fraction(String numerator, String denominator) throws NumberFormatException {
+        this(new BigInteger(numerator), new BigInteger(denominator));
     }
 
-    public void add(Fraction fraction) {
-        //TODO
+    public Fraction(long numerator, long denominator) {
+        this(BigInteger.valueOf(numerator), BigInteger.valueOf(denominator));
     }
 
-    private void reduce() {
-        //TODO
+    public static Fraction parseFraction(String s) throws NumberFormatException, ArithmeticException {
+        try {
+            String[] numbers = s.replace(" ", "").split("/", 2);
+            BigInteger num = new BigInteger(numbers[0]);
+            BigInteger den = new BigInteger(numbers[1]);
+            return new Fraction(num, den);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new NumberFormatException();
+        }
+    }
+
+    public Fraction add(Fraction other) {
+        BigInteger newNum = this.numerator.multiply(other.denominator).add(this.denominator.multiply(other.numerator));
+        BigInteger newDen = this.denominator.multiply(other.denominator);
+        Fraction result = new Fraction(newNum, newDen);
+        return result.reduce();
+    }
+
+    public Fraction subtract(Fraction other) {
+        BigInteger newNum = this.numerator.multiply(other.denominator).subtract(this.denominator.multiply(other.numerator));
+        BigInteger newDen = this.denominator.multiply(other.denominator);
+        Fraction result = new Fraction(newNum, newDen);
+        return result.reduce();
+    }
+
+    public Fraction multiply(Fraction other) {
+        BigInteger newNum = this.numerator.multiply(other.numerator);
+        BigInteger newDen = this.denominator.multiply(other.denominator);
+        Fraction result = new Fraction(newNum, newDen);
+        return result.reduce();
+    }
+
+    public Fraction divide(Fraction other) {
+        BigInteger newNum = this.numerator.multiply(other.denominator);
+        BigInteger newDen = this.denominator.multiply(other.numerator);
+        Fraction result = new Fraction(newNum, newDen);
+        return result.reduce();
+    }
+
+    public Fraction reduce() {
+        BigInteger gcd = numerator.gcd(denominator);
+        BigInteger newNum = numerator.divide(gcd);
+        BigInteger newDen = denominator.divide(gcd);
+        if (newDen.compareTo(BigInteger.ZERO) < 0) {
+            newNum = newNum.negate();
+            newDen = newDen.negate();
+        }
+        return new Fraction(newNum, newDen);
+    }
+
+    public boolean isInteger() {
+        return denominator.equals(BigInteger.ONE);
     }
 
     @Override
     public String toString() {
-        //TODO
-        return super.toString();
+        return numerator + "/" + denominator;
     }
 
-    public BigInteger getNominator() {
-        return nominator;
+    @Override
+    public int compareTo(Fraction other) {
+        return Double.compare(this.doubleValue(), other.doubleValue());
+    }
+
+    @Override
+    public int intValue() {
+        return (int) doubleValue();
+    }
+
+    @Override
+    public long longValue() {
+        return (long) doubleValue();
+    }
+
+    @Override
+    public float floatValue() {
+        return (float) doubleValue();
+    }
+
+    @Override
+    public double doubleValue() {
+        return numerator.doubleValue() / denominator.doubleValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fraction f)) return false;
+        if (!numerator.equals(f.numerator)) return false;
+        return denominator.equals(f.denominator);
+    }
+
+    public BigInteger getNumerator() {
+        return numerator;
     }
 
     public BigInteger getDenominator() {
         return denominator;
-    }
-
-    public double getDoubleValue() {
-        return nominator.doubleValue() / denominator.doubleValue();
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        //TODO
-        return super.clone();
     }
 }
