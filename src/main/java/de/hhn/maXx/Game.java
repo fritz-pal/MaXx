@@ -2,6 +2,7 @@ package de.hhn.maXx;
 
 import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.stateMachine.StateManager;
+import de.hhn.maXx.util.GameStatus;
 
 public class Game {
     private static Game instance = null;
@@ -18,26 +19,6 @@ public class Game {
         stateManager = new StateManager();
     }
 
-    public static Game getInstance() {
-        if (instance == null) {
-            throw new NullPointerException();
-        }
-        return instance;
-    }
-
-    public static void startNewInstance() {
-        instance = new Game();
-    }
-
-    public void addScoreBlack(Fraction fraction) {
-        this.scoreB = scoreB.add(fraction);
-
-    }
-
-    public void addScoreWhite(Fraction fraction) {
-        this.scoreW.add(fraction);
-    }
-
     public Fraction getScoreW() {
         return scoreW;
     }
@@ -50,17 +31,32 @@ public class Game {
         return board;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
-    }
 
     public StateManager getStateManager() {
         return stateManager;
     }
 
-    public void setStateManager(StateManager stateManager) {
-        this.stateManager = stateManager;
+    public void addScoreBlack(Fraction fraction) {
+        this.scoreB = scoreB.add(fraction);
+
     }
 
+    public void addScoreWhite(Fraction fraction) {
+        this.scoreW.add(fraction);
+    }
 
+    public GameStatus tick() {
+        return GameStatus.CONTINUE;
+    }
+
+    public static Game getInstance() {
+        if (instance == null) {
+            throw new NullPointerException();
+        }
+        return instance;
+    }
+
+    public static void startNewInstance() {
+        instance = new Game();
+    }
 }
