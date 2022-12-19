@@ -12,8 +12,8 @@ import java.math.BigInteger;
 
 public class Field {
 
-    FieldState state;
-    Fraction fraction;
+    private FieldState state;
+    private Fraction fraction;
 
     // Konstruktoren
     public Field(Fraction fraction, FieldState state) {
