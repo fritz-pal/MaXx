@@ -5,6 +5,12 @@ import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.stateMachine.StateManager;
 import de.hhn.maXx.util.GameStatus;
 
+/**
+ * Ein Singleton der das gesamte Spiel darstellt.
+ *
+ * @author Nico Vogel, Dennis Mayer
+ * @version 1, 19.12.22
+ */
 public class Game {
     private static Game instance = null;
     private final Board board;
