@@ -7,9 +7,10 @@ public class ConsoleGame {
     }
 
     public static void paint() {
-        System.out.println("\n".repeat(100));
+        clearConsole();
         System.out.println("┌" + "─".repeat(72) + "┐");
         String emptyLine = "│" + " ".repeat(72) + "│";
+
 
         for (int y = 0; y < 8; y++) {
             String line1 = "│";
@@ -46,9 +47,41 @@ public class ConsoleGame {
             line2 += "│";
             line3 += "│";
 
+            Fraction weiss = Game.getInstance().getScoreW();
+            Fraction schwarz = Game.getInstance().getScoreB();
+            switch (y) {
+                case 1 -> {
+                    int lengthNum = weiss.getNumerator().toString().length();
+                    line1 += "           " + weiss.getNumerator();
+                    line2 += "     Weiß: " + "─".repeat(lengthNum) + "    " + weiss.doubleValue();
+                    line3 += "           " + weiss.getDenominator();
+                }
+                case 5 -> {
+                    int lengthNum = schwarz.getNumerator().toString().length();
+                    line1 += "           " + schwarz.getNumerator();
+                    line2 += "  Schwarz: " + "─".repeat(lengthNum) + "    " + schwarz.doubleValue();
+                    line3 += "           " + schwarz.getDenominator();
+                }
+                case 6 -> {
+                    line1 += " ┌" + "─".repeat(53) + "┐";
+                    line2 += " │" + "█".repeat(schwarz.intValue()) + " ".repeat(53 - schwarz.intValue()) + "│";
+                    line3 += " └" + "─".repeat(53) + "┘";
+                }
+                case 2 -> {
+                    line1 += " ┌" + "─".repeat(53) + "┐";
+                    line2 += " │" + "█".repeat(weiss.intValue()) + " ".repeat(53 - weiss.intValue()) + "│";
+                    line3 += " └" + "─".repeat(53) + "┘";
+
+                }
+            }
+
             System.out.println(emptyLine + "\n" + line1 + "\n" + line2 + "\n" + line3);
         }
         System.out.println(emptyLine);
         System.out.println("└" + "─".repeat(72) + "┘");
+    }
+
+    public static void clearConsole() {
+        System.out.println("\n".repeat(100));
     }
 }

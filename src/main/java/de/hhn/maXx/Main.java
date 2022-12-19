@@ -1,6 +1,7 @@
 package de.hhn.maXx;
 
 import de.hhn.maXx.util.GameStatus;
+import de.hhn.maXx.util.MyIO;
 
 /**
  * Schreiben Sie ein (textbasiertes) Anwendungsprogramm, welches es Benutzern erlaubt, das 2-Personen Spiel
@@ -28,12 +29,32 @@ import de.hhn.maXx.util.GameStatus;
 public class Main {
 
     public static void main(String[] args) {
+        GameStatus status = null;
+        programmschleife:
         while (true) {
+            ConsoleGame.clearConsole();
+            if (status != null) {
+                switch (status) {
+                    case DRAW -> System.out.println("Unentschieden!");
+                    case WHITE_WIN -> System.out.println("Weiß gewinnt!!");
+                    case BLACK_WIN -> System.out.println("Schwarz gewinnt!!");
+                }
+            }
+            String input = MyIO.promptAndRead("Schreibe PLAY um zu Spielen oder STOP um das Programm zu Beenden.");
+            switch (input.toLowerCase()) {
+                case "play" -> {}
+                case "stop" -> {
+                    break programmschleife;
+                }
+                default -> {
+                    continue;
+                }
+            }
             Game.startNewInstance();
-            GameStatus status;
             do {
                 status = Game.getInstance().tick();
             } while (status == GameStatus.CONTINUE);
+
         }
     }
 }
