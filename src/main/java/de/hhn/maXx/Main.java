@@ -1,4 +1,7 @@
 package de.hhn.maXx;
+
+import de.hhn.maXx.util.GameStatus;
+
 /**
  * Schreiben Sie ein (textbasiertes) Anwendungsprogramm, welches es Benutzern erlaubt, das 2-Personen Spiel
  * „MaXx“ auf Spielbrettern der Größe 8 × 8 zu spielen. 62 der Spiel-Felder werden bei Spielbeginn mit zufällig
@@ -25,6 +28,12 @@ package de.hhn.maXx;
 public class Main {
 
     public static void main(String[] args) {
-        Game.startNewInstance();
+        while (true) {
+            Game.startNewInstance();
+            GameStatus status;
+            do {
+                status = Game.getInstance().tick();
+            } while (status == GameStatus.CONTINUE);
+        }
     }
 }

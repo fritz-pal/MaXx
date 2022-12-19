@@ -6,7 +6,7 @@ public class ConsoleGame {
     private ConsoleGame() {
     }
 
-    public static void paint(Board board) {
+    public static void paint() {
         System.out.println("\n".repeat(100));
         System.out.println("┌" + "─".repeat(72) + "┐");
         String emptyLine = "│" + " ".repeat(72) + "│";
@@ -16,9 +16,9 @@ public class ConsoleGame {
             String line2 = "│";
             String line3 = "│";
             for (int x = 0; x < 8; x++) {
-                switch (board.getFieldState(x, y)) {
+                switch (Game.getInstance().getBoard().getFieldState(x, y)) {
                     case FRACTION -> {
-                        Fraction fraction = board.getFraction(x, y);
+                        Fraction fraction = Game.getInstance().getBoard().getFraction(x, y);
                         int spacesNum = 3 - fraction.getNumerator().toString().length();
                         int spacesDen = 3 - fraction.getDenominator().toString().length();
                         line1 += "   " + " ".repeat(spacesNum) + fraction.getNumerator() + "   ";

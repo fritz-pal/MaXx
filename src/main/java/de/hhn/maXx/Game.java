@@ -22,7 +22,6 @@ public class Game {
         board = new Board();
         scoreW = new Fraction(0, 1);
         scoreB = new Fraction(0, 1);
-        ConsoleGame view = new ConsoleGame(board);
         stateManager = new StateManager();
     }
 
@@ -53,6 +52,7 @@ public class Game {
     }
 
     public GameStatus tick() {
+        ConsoleGame.paint();
         Direction direction = InputManager.getInput(getInstance().getStateManager().isWhitesTurn());
         getInstance().getStateManager().move(direction);
         if (scoreB.doubleValue() >= 53)
