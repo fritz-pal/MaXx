@@ -1,17 +1,12 @@
 package de.hhn.maXx;
 
-import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
 
 public class ConsoleGame {
-    Board board;
-
-    public ConsoleGame(Board board) {
-        this.board = board;
-        paint();
+    private ConsoleGame() {
     }
 
-    public void paint() {
+    public static void paint(Board board) {
         System.out.println("\n".repeat(100));
         System.out.println("┌" + "─".repeat(72) + "┐");
         String emptyLine = "│" + " ".repeat(72) + "│";
