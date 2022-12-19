@@ -40,57 +40,68 @@ public class Board {
         }
     }
 
-    private boolean movePossible(int xpos, int ypos) {
-        if (xpos > 7 || xpos < 0 || ypos > 7 || ypos < 0)
-            return false;
-        return switch (getFieldState(xpos, ypos)) {
+    private boolean movePossible(int xPos, int yPos) {
+        if (xPos > 7 || xPos < 0 || yPos > 7 || yPos < 0) return false;
+        return switch (getFieldState(xPos, yPos)) {
             case BLACK, WHITE -> false;
             default -> true;
         };
     }
 
+    public boolean movePlayerPossible(boolean isWhite, Direction direction){
+        int[] coords = getNewCoords(isWhite, direction);
+        return movePossible(coords[0], coords[1]);
+    }
+
     public boolean movePlayer(boolean isWhite, Direction direction) {
-        int xpos, ypos;
-        if (isWhite) {
-            xpos = wx;
-            ypos = wy;
-        } else {
-            xpos = bx;
-            ypos = by;
-        }
-        switch (direction) {
-            case RIGHT -> xpos += 1;
-            case LEFT -> xpos -= 1;
-            case DOWN -> ypos += 1;
-            case UP -> ypos -= 1;
-            case DIAGONAL -> {
-                if (isWhite) {
-                    xpos += 1;
-                    ypos -= 1;
-                } else {
-                    xpos -= 1;
-                    ypos += 1;
-                }
-            }
-        }
-        if (movePossible(xpos, ypos)) {
+        int[] coords = getNewCoords(isWhite, direction);
+        int xPos = coords[0];
+        int yPos = coords[1];
+        if (movePossible(xPos, yPos)) {
             if (isWhite) {
-                if (getFieldState(xpos, ypos).equals(FieldState.FRACTION))
-                    Game.getInstance().addScoreWhite(grid[xpos][ypos].getFraction());
+                if (getFieldState(xPos, yPos).equals(FieldState.FRACTION))
+                    Game.getInstance().addScoreWhite(grid[xPos][yPos].getFraction());
                 setFieldState(wx, wy, FieldState.EMPTY);
-                setFieldState(xpos, ypos, FieldState.WHITE);
-                wx = xpos;
-                wy = ypos;
+                setFieldState(xPos, yPos, FieldState.WHITE);
+                wx = xPos;
+                wy = yPos;
             } else {
-                if (getFieldState(xpos, ypos).equals(FieldState.FRACTION))
-                    Game.getInstance().addScoreBlack(grid[xpos][ypos].getFraction());
+                if (getFieldState(xPos, yPos).equals(FieldState.FRACTION))
+                    Game.getInstance().addScoreBlack(grid[xPos][yPos].getFraction());
                 setFieldState(bx, by, FieldState.EMPTY);
-                setFieldState(xpos, ypos, FieldState.BLACK);
-                bx = xpos;
-                by = ypos;
+                setFieldState(xPos, yPos, FieldState.BLACK);
+                bx = xPos;
+                by = yPos;
             }
             return true;
         }
         return false;
+    }
+
+    private int[] getNewCoords(boolean isWhite, Direction direction){
+        int xPos, yPos;
+        if (isWhite) {
+            xPos = wx;
+            yPos = wy;
+        } else {
+            xPos = bx;
+            yPos = by;
+        }
+        switch (direction) {
+            case RIGHT -> xPos += 1;
+            case LEFT -> xPos -= 1;
+            case DOWN -> yPos += 1;
+            case UP -> yPos -= 1;
+            case DIAGONAL -> {
+                if (isWhite) {
+                    xPos += 1;
+                    yPos -= 1;
+                } else {
+                    xPos -= 1;
+                    yPos += 1;
+                }
+            }
+        }
+    return new int[]{xPos, yPos};
     }
 }

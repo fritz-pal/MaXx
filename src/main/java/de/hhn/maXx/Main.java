@@ -40,7 +40,7 @@ public class Main {
                     case BLACK_WIN -> System.out.println("Schwarz gewinnt!!");
                 }
             }
-            String input = MyIO.promptAndRead("Schreibe PLAY um zu Spielen oder STOP um das Programm zu Beenden.");
+            String input = MyIO.promptAndRead("Schreibe PLAY um zu Spielen oder STOP um das Programm zu Beenden: ");
             switch (input.toLowerCase()) {
                 case "play" -> {}
                 case "stop" -> {
