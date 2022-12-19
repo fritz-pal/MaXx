@@ -1,4 +1,4 @@
-package de.hhn.maXx.maXxUtils;
+package de.hhn.maXx.util;
 
 import java.math.BigInteger;
 
