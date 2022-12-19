@@ -7,6 +7,8 @@ package de.hhn.maXx;
 
 import de.hhn.maXx.maXxUtils.Fraction;
 
+import de.hhn.maXx.maXxUtils.FieldState;
+
 public class Field {
 
 
@@ -14,4 +16,7 @@ public class Field {
 
     }
 
+    public FieldState getState() {
+        return null;
+    }
 }
