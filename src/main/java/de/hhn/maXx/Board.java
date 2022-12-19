@@ -63,7 +63,7 @@ public class Board {
             case DOWN -> ypos += 1;
             case UP -> ypos -= 1;
             case DIAGONAL -> {
-                if (isWhite == true) {
+                if (isWhite) {
                     xpos -= 1;
                     ypos += 1;
                 } else {
