@@ -21,6 +21,8 @@ public class PlayerTurnState implements State{
     public void move(Direction direction) {
         if (getInstance().getBoard().movePlayer(isWhite, direction)){
             getInstance().getStateManager().setCurrentState(new PlayerTurnState(!isWhite));
+        }else{
+            System.out.println("Impossible move");
         }
     }
 }

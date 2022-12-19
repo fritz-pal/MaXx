@@ -9,7 +9,7 @@ public class InputManager {
 
     public static Direction getInput(boolean isWhite) {
         Direction dir;
-        String input = MyIO.promptAndRead((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \n Gebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
+        String input = MyIO.promptAndRead((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
         dir = Direction.fromString(input);
         while (dir == null) {
             input = MyIO.promptAndRead("Gebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein:");

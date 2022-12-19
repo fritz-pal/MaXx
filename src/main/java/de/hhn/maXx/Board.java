@@ -41,8 +41,9 @@ public class Board {
     }
 
     private boolean movePossible(int xpos, int ypos) {
-        if (!(0 <= xpos && xpos <= 7 && 0 <= ypos && ypos <= 7))
+        if (xpos < 0 || xpos > 7 || ypos < 0 || ypos > 7) {
             return false;
+        }
         if (grid[xpos][ypos].getState() != FieldState.FRACTION || grid[xpos][ypos].getState() != FieldState.EMPTY)
             return false;
         return true;
@@ -70,7 +71,6 @@ public class Board {
                     xpos -= 1;
                     ypos += 1;
                 }
-                ;
             }
         }
         if (movePossible(xpos, ypos)) {
