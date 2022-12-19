@@ -37,7 +37,7 @@ public class Board {
         }
     }
 
-    public boolean movePossible(boolean isWhite, Direction direction) {
+    private boolean movePossible(boolean isWhite, Direction direction) {
         if (isWhite == true) {
             xpos = wx;
             ypos = wy;
@@ -68,11 +68,15 @@ public class Board {
         }
     }
 
-    public void movePlayer(boolean isWhite, Direction direction) {
+    public boolean movePlayer(boolean isWhite, Direction direction) {
         if (movePossible(isWhite, direction) == true) {
-
+            /*
+             * neues feld is player
+             * Altes feld State empty
+             */
+            return true;
         } else {
-
+            return false;
         }
     }
 }
