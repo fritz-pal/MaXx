@@ -61,6 +61,11 @@ public class Board {
                 ;
             }
         }
+        if (0 <= xpos && xpos <= 7 && 0 <= ypos && ypos <= 7) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void movePlayer(boolean isWhite, Direction direction) {
