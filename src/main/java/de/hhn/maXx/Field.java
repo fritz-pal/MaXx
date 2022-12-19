@@ -13,7 +13,7 @@ public class Field {
 
 
     public Fraction getFraction(){
-
+        return null;
     }
 
     public FieldState getState() {
