@@ -7,12 +7,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
 
 public class JoyStickButton extends JButton {
-    Image image;
     private final MaXxWindow window;
     private final Direction direction;
+    Image image;
     private int x;
     private int y;
     private boolean hovering = false;
@@ -51,7 +50,7 @@ public class JoyStickButton extends JButton {
                 y += 50;
             }
             case LEFT -> x -= 100;
-            case DIAGONAL -> y -= 50;
+            case DIAGONAL -> x -= 50;
         }
     }
 

@@ -15,7 +15,7 @@ public class MaXxButton extends JButton {
     private MaXxWindow window;
     private JLabel nom;
     private JLabel den;
-    private PieceState state = PieceState.EMPTY;
+    private PieceState state = PieceState.FRACTION;
 
     public MaXxButton(MaXxWindow window, int x, int y) {
         this.window = window;
