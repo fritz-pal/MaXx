@@ -1,11 +1,13 @@
 package de.hhn.maXx.view;
 
 import de.hhn.maXx.maXxUtils.Direction;
+import de.hhn.maXx.maXxUtils.FieldState;
+import de.hhn.maXx.maXxUtils.Fraction;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MaXxWindow extends JFrame {
+public class MaXxWindow extends JFrame implements Game {
     JLabel title;
     MaXxButton[][] field = new MaXxButton[8][8];
 
@@ -42,7 +44,9 @@ public class MaXxWindow extends JFrame {
         super.paint(g);
     }
 
-    public void update() {
+    @Override
+    public void update(int x, int y, Fraction fraction, FieldState state) {
         //TODO
+
     }
 }

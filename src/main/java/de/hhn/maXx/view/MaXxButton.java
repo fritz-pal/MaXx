@@ -1,6 +1,6 @@
 package de.hhn.maXx.view;
 
-import de.hhn.maXx.maXxUtils.PieceState;
+import de.hhn.maXx.maXxUtils.FieldState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class MaXxButton extends JButton {
     private MaXxWindow window;
     private JLabel nom;
     private JLabel den;
-    private PieceState state = PieceState.FRACTION;
+    private FieldState state = FieldState.FRACTION;
 
     public MaXxButton(MaXxWindow window, int x, int y) {
         this.window = window;
@@ -58,7 +58,7 @@ public class MaXxButton extends JButton {
         this.setBounds(x * BUTTON_SIZE + window.getWidth() / 2 - BUTTON_SIZE * 4, y * BUTTON_SIZE + window.getHeight() / 2 - BUTTON_SIZE * 4, BUTTON_SIZE, BUTTON_SIZE);
 
         g.setColor(new Color(0x96, 0x98, 0x9D));
-        if (state == PieceState.FRACTION) {
+        if (state == FieldState.FRACTION) {
             //draw a horizontal line
             g.drawLine(BUTTON_SIZE / 5, BUTTON_SIZE / 2, BUTTON_SIZE / 5 * 4, BUTTON_SIZE / 2);
             nom.setVisible(true);

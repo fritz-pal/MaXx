@@ -1,6 +1,6 @@
 package de.hhn.maXx.maXxUtils;
 
-public enum PieceState {
+public enum FieldState {
     WHITE,
     BLACK,
     EMPTY,
