@@ -7,7 +7,7 @@ import de.hhn.maXx.util.Fraction;
 public class Board {
     Field[][] grid;
     int wx = 3, wy = 2, bx = 4, by = 5;
-    int xpos, ypos;
+
 
     public Board() {
         grid = new Field[8][8];
@@ -37,7 +37,20 @@ public class Board {
         }
     }
 
-    private boolean movePossible(boolean isWhite, Direction direction) {
+    private boolean movePossible(int xpos, int ypos) {
+        
+        if (grid[xpos][ypos].getState() != FieldState.FRACTION || grid[xpos][ypos].getState() != FieldState.EMPTY) {
+            return false;
+        } 
+        if (0 <= xpos && xpos <= 7 && 0 <= ypos && ypos <= 7) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean movePlayer(boolean isWhite, Direction direction) {
+        int xpos, ypos;
         if (isWhite) {
             xpos = wx;
             ypos = wy;
@@ -61,20 +74,9 @@ public class Board {
                 ;
             }
         }
-        if (isWhite && xpos == bx && ypos == by) {
-            return false;
-        } else if (!isWhite && xpos == wx && ypos == wy) {
-            return false;
-        }
-        if (0 <= xpos && xpos <= 7 && 0 <= ypos && ypos <= 7) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        if (movePossible(xpos, ypos)) {
+            
 
-    public boolean movePlayer(boolean isWhite, Direction direction) {
-        if (movePossible(isWhite, direction)) {
             /*
              * neues feld is player
              * Altes feld State empty
