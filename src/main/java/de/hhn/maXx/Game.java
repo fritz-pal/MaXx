@@ -10,14 +10,21 @@ public class Game {
     private Fraction scoreB;
     private StateManager stateManager;
 
-    private Game(){}
+    private Game() {
+        board = new Board();
+        scoreW = new Fraction(0, 1);
+        scoreB = new Fraction(0, 1);
+        ConsoleGame view = new ConsoleGame(board);
+        stateManager = new StateManager();
+    }
 
-    public static Game getInstance(){
-        if(instance == null){
+    public static Game getInstance() {
+        if (instance == null) {
             throw new NullPointerException();
         }
         return instance;
     }
+
     public static void startNewInstance() {
         instance = new Game();
     }
@@ -26,9 +33,11 @@ public class Game {
         this.scoreB = scoreB.add(fraction);
 
     }
+
     public void addScoreWhite(Fraction fraction) {
         this.scoreW.add(fraction);
     }
+
     public Fraction getScoreW() {
         return scoreW;
     }
