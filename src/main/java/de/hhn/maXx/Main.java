@@ -67,9 +67,8 @@ public class Main {
     private static void sound() {
         try {
             File f = new File("src/main/resources/tadaa.wav");
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
             Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
+            clip.open(AudioSystem.getAudioInputStream(f.toURI().toURL()));
             clip.start();
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
