@@ -8,7 +8,6 @@ public class Board {
     Field[][] grid;
     int wx = 3, wy = 2, bx = 4, by = 5;
 
-
     public Board() {
         grid = new Field[8][8];
         fillField();
@@ -18,6 +17,10 @@ public class Board {
 
     public FieldState getFieldState(int x, int y) {
         return grid[x][y].getState();
+    }
+
+    public void setFieldState(int x, int y, FieldState state) {
+        grid[x][y].setState(state);
     }
 
     public Fraction getFraction(int x, int y) {
@@ -38,15 +41,11 @@ public class Board {
     }
 
     private boolean movePossible(int xpos, int ypos) {
-        
-        if (grid[xpos][ypos].getState() != FieldState.FRACTION || grid[xpos][ypos].getState() != FieldState.EMPTY) {
+        if (!(0 <= xpos && xpos <= 7 && 0 <= ypos && ypos <= 7))
             return false;
-        } 
-        if (0 <= xpos && xpos <= 7 && 0 <= ypos && ypos <= 7) {
-            return true;
-        } else {
+        if (grid[xpos][ypos].getState() != FieldState.FRACTION || grid[xpos][ypos].getState() != FieldState.EMPTY)
             return false;
-        }
+        return true;
     }
 
     public boolean movePlayer(boolean isWhite, Direction direction) {
@@ -75,12 +74,19 @@ public class Board {
             }
         }
         if (movePossible(xpos, ypos)) {
-            
-
-            /*
-             * neues feld is player
-             * Altes feld State empty
-             */
+            if (getFieldState(xpos, ypos).equals(FieldState.FRACTION))
+                Game.getInstance().addScoreWhite(grid[xpos][ypos].getFraction());
+            if (isWhite) {
+                setFieldState(wx, wy, FieldState.EMPTY);
+                setFieldState(xpos, ypos, FieldState.WHITE);
+                wx = xpos;
+                wy = ypos;
+            } else {
+                setFieldState(bx, by, FieldState.EMPTY);
+                setFieldState(xpos, ypos, FieldState.BLACK);
+                bx = xpos;
+                by = ypos;
+            }
             return true;
         } else {
             return false;
