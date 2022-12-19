@@ -1,7 +1,7 @@
 package de.hhn.maXx;
 /**
  * Schreiben Sie ein (textbasiertes) Anwendungsprogramm, welches es Benutzern erlaubt, das 2-Personen Spiel
- * „MaXx“ auf Spielbrettern der Größe 8×8 zu spielen. 62 der Spiel-Felder werden bei Spielbeginn mit zufällig
+ * „MaXx“ auf Spielbrettern der Größe 8 × 8 zu spielen. 62 der Spiel-Felder werden bei Spielbeginn mit zufällig
  * gewählten Brüchen belegt (Wert > 1, Zähler und Nenner gekürzt, jeweils mindestens zwei-, höchstens
  * dreistellig), die beiden Spielfiguren für Weiß (W) und Schwarz (B) stehen auf freien Feldern (siehe Bild).
  * Weiß und Schwarz ziehen abwechselnd ihre Spielfigur auf ein benachbartes Feld in einer der vier

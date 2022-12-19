@@ -5,6 +5,12 @@ import java.math.BigInteger;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Hilfsklasse zum Lesen und Schreiben von der Konsole.
+ *
+ * @author Henri Staudenrausch, Nadine Schoch
+ * @version 3, 12.12.2022
+ **/
 public final class MyIO {
     static Scanner sc = new Scanner(System.in);
 

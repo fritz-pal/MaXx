@@ -1,6 +1,16 @@
 package de.hhn.maXx.util;
 
 import java.math.BigInteger;
+
+/**
+ * Eine Subklasse von Number die immutable
+ * ist, den Datentyp "Rationale Zahl" (Bruch mit ganzzahligem
+ * Zähler und Nenner = BigInteger) realisiert und das Interface Comparable
+ * implementiert.
+ *
+ * @author Henri Staudenrausch, Nadine Schoch, Dennis Mayer
+ * @version 3, 19.12.2022
+ **/
 public class Fraction extends Number implements Comparable<Fraction> {
     protected BigInteger numerator;
     protected BigInteger denominator;

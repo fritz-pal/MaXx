@@ -11,10 +11,6 @@ public class ConsoleGame {
         paint();
     }
 
-    public void update(int x, int y, Fraction fraction, FieldState state) {
-        //TODO
-    }
-
     public void paint() {
         System.out.println("\n".repeat(100));
         System.out.println("┌" + "─".repeat(72) + "┐");
