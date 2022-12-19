@@ -5,7 +5,13 @@ import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
 
 public class Board {
-    Field[][] grid = new Field[8][8];
+    Field[][] grid;
+
+    public Board() {
+        grid = new Field[8][8];
+        grid[3][2].setState(FieldState.WHITE);
+        grid[4][5].setState(FieldState.BLACK);
+    }
 
     public FieldState getFieldState(int x, int y) {
         return grid[x][y].getState();
