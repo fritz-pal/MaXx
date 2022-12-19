@@ -4,7 +4,10 @@ import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
 
 public class ConsoleGame {
-    Field[][] grid = new Field[8][8];
+    Board board;
+    public ConsoleGame(Board board){
+        this.board = board;
+    }
 
     public void update(int x, int y, Fraction fraction, FieldState state) {
         //TODO
@@ -19,13 +22,13 @@ public class ConsoleGame {
             String line3 = "│";
             String emptyLine = "│" + "─".repeat(40) + "│";
             for (int x = 0; x < 8; x++) {
-                Field field = grid[x][y];
-                if (field.getState().equals(FieldState.FRACTION)) {
-                    int spacesNum = 3 - field.getFraction().getNumerator().toString().length();
-                    int spacesDen = 3 - field.getFraction().getDenominator().toString().length();
-                    line1 += " " + field.getFraction().getNumerator() + " ";
+                if (board.getFieldState(x, y).equals(FieldState.FRACTION)) {
+                    Fraction fraction =  board.getFraction(x, y);
+                    int spacesNum = 3 - fraction.getNumerator().toString().length();
+                    int spacesDen = 3 - fraction.getDenominator().toString().length();
+                    line1 += " " + fraction.getNumerator() + " ";
                     line2 += " ─── ";
-                    line3 += " " + field.getFraction().getNumerator() + " ";
+                    line3 += " " + fraction.getNumerator() + " ";
                 }
             }
             line1 += "│";
