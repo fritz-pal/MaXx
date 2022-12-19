@@ -8,11 +8,16 @@ public class Board {
     Field[][] grid = new Field[8][8];
 
     public FieldState getFieldState(int x, int y) {
-        return null;
+        return grid[x][y].getState();
     }
 
     public Fraction getFraction(int x, int y) {
-        return null;
+        if(grid[x][y].getState() == FieldState.FRACTION){
+            return grid[x][y].getFraction();
+        }else{
+            return new Fraction(0, 1);
+        }
+        
     }
 
     private void fillField(){
