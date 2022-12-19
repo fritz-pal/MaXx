@@ -5,9 +5,9 @@ package de.hhn.maXx;
 * - Figuren
  */
 
-import de.hhn.maXx.maXxUtils.Fraction;
+import de.hhn.maXx.util.Fraction;
 
-import de.hhn.maXx.maXxUtils.FieldState;
+import de.hhn.maXx.util.FieldState;
 
 public class Field {
 
