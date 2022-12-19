@@ -64,11 +64,11 @@ public class Board {
             case UP -> ypos -= 1;
             case DIAGONAL -> {
                 if (isWhite) {
-                    xpos -= 1;
-                    ypos += 1;
-                } else {
                     xpos += 1;
                     ypos -= 1;
+                } else {
+                    xpos -= 1;
+                    ypos += 1;
                 }
                 ;
             }
