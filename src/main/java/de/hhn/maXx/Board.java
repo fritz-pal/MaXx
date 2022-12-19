@@ -5,8 +5,8 @@ import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
 
 public class Board {
-    Field[][] grid;
-    int wx = 3, wy = 2, bx = 4, by = 5;
+    private final Field[][] grid;
+    private int wx = 3, wy = 2, bx = 4, by = 5;
 
     public Board() {
         grid = new Field[8][8];
@@ -41,12 +41,12 @@ public class Board {
     }
 
     private boolean movePossible(int xpos, int ypos) {
-        if (xpos < 0 || xpos > 7 || ypos < 0 || ypos > 7) {
+        if (xpos > 7 || xpos < 0 || ypos > 7 || ypos < 0)
             return false;
-        }
-        if (grid[xpos][ypos].getState() != FieldState.FRACTION || grid[xpos][ypos].getState() != FieldState.EMPTY)
-            return false;
-        return true;
+        return switch (getFieldState(xpos, ypos)) {
+            case BLACK, WHITE -> false;
+            default -> true;
+        };
     }
 
     public boolean movePlayer(boolean isWhite, Direction direction) {
