@@ -12,19 +12,19 @@ public class Board {
     }
 
     public Fraction getFraction(int x, int y) {
-        if(grid[x][y].getState() == FieldState.FRACTION){
+        if (grid[x][y].getState() == FieldState.FRACTION) {
             return grid[x][y].getFraction();
-        }else{
+        } else {
             return new Fraction(0, 1);
         }
-        
-    }
-
-    private void fillField(){
 
     }
 
-    public void movePlayer(boolean isWhite, Direction direction){
+    private void fillField() {
 
+    }
+
+    public boolean movePlayer(boolean isWhite, Direction direction) {
+        return true;
     }
 }
