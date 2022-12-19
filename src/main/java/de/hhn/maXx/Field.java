@@ -29,6 +29,10 @@ public class Field {
     private void initFraction() {
         int randNum = (int) (Math.random() * 1000);
         int randDen = (int) (Math.random() * 1000);
+        if (randDen == 0){
+            initFraction();
+            return;
+        }
         fraction = new Fraction(randNum, randDen);
         if (fraction.getNumerator().compareTo(new BigInteger("9")) <= 0 || fraction.getNumerator().compareTo(new BigInteger("999")) > 0) {
             initFraction();
