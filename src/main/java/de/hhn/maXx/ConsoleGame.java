@@ -1,7 +1,7 @@
 package de.hhn.maXx;
 
-import de.hhn.maXx.maXxUtils.FieldState;
-import de.hhn.maXx.maXxUtils.Fraction;
+import de.hhn.maXx.util.FieldState;
+import de.hhn.maXx.util.Fraction;
 
 public class ConsoleGame {
     Field[][] grid = new Field[8][8];
@@ -21,6 +21,8 @@ public class ConsoleGame {
             for (int x = 0; x < 8; x++) {
                 Field field = grid[x][y];
                 if (field.getState().equals(FieldState.FRACTION)) {
+                    int spacesNum = 3 - field.getFraction().getNumerator().toString().length();
+                    int spacesDen = 3 - field.getFraction().getDenominator().toString().length();
                     line1 += " " + field.getFraction().getNumerator() + " ";
                     line2 += " ─── ";
                     line3 += " " + field.getFraction().getNumerator() + " ";

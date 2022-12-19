@@ -1,6 +1,6 @@
 package de.hhn.maXx;
 
-import de.hhn.maXx.maXxUtils.Fraction;
+import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.stateMachine.StateManager;
 
 public class Game {
