@@ -97,7 +97,9 @@ public class Fraction extends Number implements Comparable<Fraction> {
 
     @Override
     public int compareTo(Fraction other) {
-        return Double.compare(this.doubleValue(), other.doubleValue());
+        BigInteger num1 = this.numerator.multiply(other.denominator);
+        BigInteger num2 = other.numerator.multiply(this.denominator);
+        return num1.compareTo(num2);
     }
 
     @Override
