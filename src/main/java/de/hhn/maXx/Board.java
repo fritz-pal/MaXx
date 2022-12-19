@@ -9,6 +9,7 @@ public class Board {
 
     public Board() {
         grid = new Field[8][8];
+        fillField();
         grid[3][2].setState(FieldState.WHITE);
         grid[4][5].setState(FieldState.BLACK);
     }
@@ -27,7 +28,11 @@ public class Board {
     }
 
     private void fillField() {
-
+        for(int i = 0; i<8; i++){
+            for(int j = 0; j<8;j++){
+                grid[i][j] = new Field();
+            }
+        }
     }
 
     public boolean movePlayer(boolean isWhite, Direction direction) {
