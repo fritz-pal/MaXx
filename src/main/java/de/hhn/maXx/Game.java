@@ -47,7 +47,7 @@ public class Game {
     }
 
     public GameStatus tick() {
-        Direction direction = InputManager.getInput(getInstance().getStateManager().isWhitesTurn() ? "White: " : "Black: ");
+        Direction direction = InputManager.getInput(getInstance().getStateManager().isWhitesTurn());
         getInstance().getStateManager().move(direction);
         if (scoreB.doubleValue() >= 53)
             return GameStatus.BLACK_WIN;
