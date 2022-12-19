@@ -15,7 +15,7 @@ public final class MyIO {
         try {
             System.out.println(prompt);
             return sc.nextLine();
-        } catch (NoSuchElementException | IllegalStateException  e) {
+        } catch (NoSuchElementException | IllegalStateException e) {
             return promptAndRead("Error - do it again: ");
         }
     }
