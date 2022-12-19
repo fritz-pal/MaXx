@@ -4,20 +4,16 @@ import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.MyIO;
 
 public class InputManager {
-    private InputManager() {}
+    private InputManager() {
+    }
 
-    public static Direction getInput(String message) {
-        String direction = MyIO.promptAndRead(message);
-        while (!isViableDirection(direction)) {
-            MyIO.promptAndRead("Try again: ");
-        }
-        return switch (direction.toLowerCase()) {
-            case "n" -> Direction.UP;
-            case "e" -> Direction.RIGHT;
-            case "s" -> Direction.DOWN;
-            case "w" -> Direction.LEFT;
-            case "d" -> Direction.DIAGONAL;
-        };
+    public static Direction getInput(boolean isWhite) {
+        Direction dir;
+        do {
+            String input = MyIO.promptAndRead((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \n Gebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
+            dir = Direction.fromString(input);
+        } while (dir == null);
+        return dir;
     }
 
     private static boolean isViableDirection(String str) {
