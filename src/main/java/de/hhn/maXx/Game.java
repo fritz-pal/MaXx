@@ -6,14 +6,13 @@ import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.MyIO;
 
-import java.sql.SQLOutput;
-
 /**
  * Klasse zum Managen des Spiels (Singleton)
  *
  * @author Dennis Mayer, Nico Vogel, Henri Staudenrausch
  * @version 1, 19.12.22
  */
+
 public class Game {
     private static Game instance = null;
     private Board board;
@@ -72,7 +71,6 @@ public class Game {
 
     public GameStatus continueGame() {
         ConsoleGame.paint();
-        System.out.println(Field.attempts);
         boolean isWhite = stateManager.isWhitesTurn();
         Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
         while (!getInstance().getStateManager().move(direction))
