@@ -5,6 +5,8 @@ import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.util.IntVector2;
 
+import java.util.stream.IntStream;
+
 /**
  * Die Klasse Board beinhaltet alle Methoden, um Spieler zu bewegen,
  * Spielfelder zu befüllen und Informationen zum Spielbrett zu erlangen.
@@ -12,6 +14,7 @@ import de.hhn.maXx.util.IntVector2;
  * @author Lukas Vier, Henri Staudenrausch, Nico Vogel
  * @version 2, 19.12.22
  */
+
 public class Board {
     private final Field[][] grid;
     private IntVector2 whitePos, blackPos;
@@ -43,11 +46,7 @@ public class Board {
     }
 
     private void fillField() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                grid[i][j] = new Field();
-            }
-        }
+        IntStream.range(0, 8).forEach(x -> IntStream.range(0, 8).forEach(y -> grid[x][y] = new Field()));
     }
 
     private boolean movePossible(IntVector2 target) {

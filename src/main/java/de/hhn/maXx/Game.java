@@ -6,6 +6,8 @@ import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.MyIO;
 
+import java.sql.SQLOutput;
+
 /**
  * Klasse zum Managen des Spiels (Singleton)
  *
@@ -70,11 +72,11 @@ public class Game {
 
     public GameStatus continueGame() {
         ConsoleGame.paint();
+        System.out.println(Field.attempts);
         boolean isWhite = stateManager.isWhitesTurn();
         Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
-        while (!getInstance().getStateManager().move(direction)) {
+        while (!getInstance().getStateManager().move(direction))
             direction = getInput("Du kannst nicht in diese Richtung laufen! Versuche es nochmal: ");
-        }
         if (scoreB.doubleValue() >= 53) return GameStatus.BLACK_WIN;
         if (scoreW.doubleValue() >= 53) return GameStatus.WHITE_WIN;
         return GameStatus.CONTINUE;

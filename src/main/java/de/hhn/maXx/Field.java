@@ -14,12 +14,13 @@ import java.math.BigInteger;
  */
 public class Field {
 
+    public static int attempts = 0;
     private FieldState state;
     private Fraction fraction;
 
     public Field() {
         state = FieldState.FRACTION;
-        initFraction();
+        fraction = alt();
     }
 
     private void initFraction() {
@@ -35,6 +36,25 @@ public class Field {
         } else if (fraction.getDenominator().compareTo(new BigInteger("9")) <= 0 || fraction.getDenominator().compareTo(new BigInteger("999")) > 0) {
             initFraction();
         }
+    }
+
+    private Fraction alt() {
+        Fraction erg;
+        do {
+            attempts++;
+            Fraction base = new Fraction(Math.min((int)(Math.random() * 4) + 2, 9), 1); //Random Fraction between 2 and 5 (Integer)
+            int offsetDenum = (int)(Math.random() * 199 + 1);
+            int offsetNum = (int)(offsetDenum * - 1 + Math.random() * offsetDenum * 2);
+            Fraction offset = new Fraction(offsetNum, offsetDenum);
+            erg = base.add(offset);
+        } while(!fractionFine(erg));
+        return erg;
+    }
+
+    private boolean fractionFine(Fraction fraction) {
+        int numLen = fraction.getNumerator().toString().length();
+        int deLen = fraction.getDenominator().toString().length();
+        return numLen > 1 && numLen < 4 && deLen > 1 && deLen < 4;
     }
 
     public Fraction getFraction() {
