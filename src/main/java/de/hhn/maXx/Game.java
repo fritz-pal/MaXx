@@ -14,12 +14,16 @@ import de.hhn.maXx.util.MyIO;
  */
 public class Game {
     private static Game instance = null;
-    private final Board board;
-    private final StateManager stateManager;
+    private Board board;
+    private StateManager stateManager;
     private Fraction scoreW;
     private Fraction scoreB;
 
     private Game() {
+        init();
+    }
+    
+    private void init(){
         board = new Board();
         scoreW = new Fraction(0, 1);
         scoreB = new Fraction(0, 1);
@@ -34,7 +38,9 @@ public class Game {
     }
 
     public static void startNewInstance() {
-        instance = new Game();
+        if (instance == null)
+            instance = new Game();
+        instance.init();
     }
 
     public Fraction getScoreW() {
