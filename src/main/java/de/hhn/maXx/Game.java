@@ -68,7 +68,7 @@ public class Game {
         scoreW = scoreW.add(fraction);
     }
 
-    public GameStatus tick() {
+    public GameStatus continueGame() {
         ConsoleGame.paint();
         boolean isWhite = stateManager.isWhitesTurn();
         Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");

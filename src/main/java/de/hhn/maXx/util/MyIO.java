@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
- * Hilfsklasse zum Lesen und Schreiben von der Konsole.
+ * Hilfsklasse zum Lesen und Schreiben der Konsole.
  *
  * @author Henri Staudenrausch, Nadine Schoch
  * @version 3, 12.12.2022

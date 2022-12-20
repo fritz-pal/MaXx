@@ -53,9 +53,8 @@ public class Main {
             }
             Game.startNewInstance();
             do {
-                status = Game.getInstance().tick();
+                status = Game.getInstance().continueGame();
             } while (status == GameStatus.CONTINUE);
-
         }
     }
 

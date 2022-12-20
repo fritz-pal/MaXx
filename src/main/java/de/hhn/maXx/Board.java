@@ -9,7 +9,7 @@ import de.hhn.maXx.util.IntVector2;
  * Die Klasse Board beinhaltet alle Methoden, um Spieler zu bewegen,
  * Spielfelder zu befüllen und Informationen zum Spielbrett zu erlangen.
  *
- * @author Lukas Vier, Henri Staudenrausch
+ * @author Lukas Vier, Henri Staudenrausch, Nico Vogel
  * @version 2, 19.12.22
  */
 public class Board {
@@ -51,17 +51,12 @@ public class Board {
     }
 
     private boolean movePossible(IntVector2 target) {
-        if (posOutOfBounds(target)) return false;
-        return switch (getFieldState(target)) {
-            case BLACK, WHITE -> false;
-            default -> true;
-        };
+        return !posOutOfBounds(target) && !getFieldState(target).equals(FieldState.BLACK) && !getFieldState(target).equals(FieldState.WHITE);
     }
 
     private boolean posOutOfBounds(IntVector2 pos) {
         return pos.x > 7 || pos.x < 0 || pos.y > 7 || pos.y < 0;
     }
-
 
     public boolean movePlayer(boolean isWhite, Direction direction) {
         IntVector2 target = getNewCoords(isWhite, direction);
@@ -84,26 +79,16 @@ public class Board {
         return false;
     }
 
-    private IntVector2 getNewCoords(boolean isWhite, Direction direction){
-        IntVector2 pos;
-        if (isWhite) {
-            pos = whitePos;
-        } else {
-            pos = blackPos;
-        }
-        switch (direction) {
-            case RIGHT -> pos = pos.add(new IntVector2(1, 0));
-            case LEFT -> pos = pos.add(new IntVector2(-1, 0));
-            case DOWN -> pos = pos.add(new IntVector2(0, 1));
-            case UP -> pos = pos.add(new IntVector2(0, -1));
-            case DIAGONAL -> {
-                if (isWhite) {
-                    pos = pos.add(new IntVector2(1, -1));
-                } else {
-                    pos = pos.add(new IntVector2(-1, 1));
-                }
-            }
-        }
+    private IntVector2 getNewCoords(boolean isWhite, Direction direction) {
+        IntVector2 pos = isWhite ? whitePos : blackPos;
+
+        pos = pos.add(switch (direction) {
+            case RIGHT -> new IntVector2(1, 0);
+            case LEFT -> new IntVector2(-1, 0);
+            case DOWN -> new IntVector2(0, 1);
+            case UP -> new IntVector2(0, -1);
+            case DIAGONAL -> isWhite ? new IntVector2(1, -1) : new IntVector2(-1, 1);
+        });
         return pos;
     }
 }
