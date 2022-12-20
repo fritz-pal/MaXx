@@ -4,6 +4,13 @@ import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
 
+/**
+ * Die Klasse Board beinhaltet alle Methoden, um Spieler zu bewegen,
+ * Spielfelder zu befüllen und Informationen zum Spielbrett zu erlangen.
+ *
+ * @author Lukas Vier, Henri Staudenrausch
+ * @version 2, 19.12.22
+ */
 public class Board {
     private final Field[][] grid;
     private int wx = 3, wy = 2, bx = 4, by = 5;

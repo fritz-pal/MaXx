@@ -18,20 +18,15 @@ import java.io.IOException;
  * Schwarz zudem nach unten links (SW) ziehen. Gewonnen hat derjenige Spieler, der zuerst eine Summe > 53
  * erreicht hat. Man kann abwechselnd Eingaben für Spielzüge des W-Spielers und des B-Spielers machen oder
  * aber zur Steuerung des Programms, etwa zum Beenden.
- * – Überlegen Sie sich vor der Implementierung, welche
- * Klassen, Interfaces, Objekte (für das Spielbrett, die
- * Dialogkomponente, etc.) benötigt werden und welche
- * Methoden. (Denken Sie auch an mögliche spätere
- * Erweiterungen des Spiels.)
- * – Überlegen Sie, wie ein Benutzer das Programm steuern
- * soll und wie die Ausgabe gestaltet wird.
+ * – Überlegen Sie sich vor der Implementierung, welche Klassen, Interfaces, Objekte (für das Spielbrett, die
+ *   Dialogkomponente, etc.) benötigt werden und welche Methoden. (Denken Sie auch an mögliche spätere Erweiterungen des Spiels.)
+ * – Überlegen Sie, wie ein Benutzer das Programm steuern soll und wie die Ausgabe gestaltet wird.
  *
  * @author Henri Staudenrausch, Lukas Vier, Nico Vogel, Nadine Schoch, Dennis Mayer
  * @version 1, 19.12.2022
  **/
 
 public class Main {
-
     public static void main(String[] args) {
         GameStatus status = null;
         programmschleife:

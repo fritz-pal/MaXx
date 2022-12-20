@@ -3,6 +3,12 @@ package de.hhn.maXx.stateMachine;
 
 import de.hhn.maXx.util.Direction;
 
+/**
+ * Manager für die State Machine
+ *
+ * @author Nico Vogel
+ * @version 1, 19.12.2022
+ **/
 public class StateManager implements State {
     State currentState;
 

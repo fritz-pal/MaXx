@@ -2,6 +2,12 @@ package de.hhn.maXx;
 
 import de.hhn.maXx.util.Fraction;
 
+/**
+ * Statische Klasse zum Ausgeben des Spielbretts und Spielstands auf der Konsole.
+ *
+ * @author Henri Staudenrausch
+ * @version 1, 19.12.22
+ */
 public class ConsoleGame {
     private ConsoleGame() {
     }

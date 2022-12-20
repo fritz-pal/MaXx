@@ -1,7 +1,7 @@
 package de.hhn.maXx.util;
 
 /**
- * Ein Enum, der den Status eines Feldes anzeigt.
+ * Ein Enum, der den Zustand eines Feldes anzeigt.
  *
  * @author Henri Staudenrausch
  * @version 1, 19.12.22

@@ -7,9 +7,9 @@ import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.MyIO;
 
 /**
- * Ein Singleton der das gesamte Spiel darstellt.
+ * Klasse zum Managen des Spiels (Singleton)
  *
- * @author Nico Vogel, Dennis Mayer, Henri Staudenrausch
+ * @author Dennis Mayer, Nico Vogel, Henri Staudenrausch
  * @version 1, 19.12.22
  */
 public class Game {
@@ -65,9 +65,9 @@ public class Game {
     public GameStatus tick() {
         ConsoleGame.paint();
         boolean isWhite = stateManager.isWhitesTurn();
-        Direction direction = getInput(isWhite, (isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
+        Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
         while (!board.movePlayerPossible(isWhite, direction)) {
-            direction = getInput(stateManager.isWhitesTurn(), "Du kannst nicht in diese Richtung laufen! Versuche es nochmal: ");
+            direction = getInput("Du kannst nicht in diese Richtung laufen! Versuche es nochmal: ");
         }
         getInstance().getStateManager().move(direction);
         if (scoreB.doubleValue() >= 53) return GameStatus.BLACK_WIN;
@@ -75,7 +75,7 @@ public class Game {
         return GameStatus.CONTINUE;
     }
 
-    public Direction getInput(boolean isWhite, String prompt) {
+    public Direction getInput(String prompt) {
         Direction dir;
         String input = MyIO.promptAndRead(prompt);
         dir = Direction.fromString(input);
