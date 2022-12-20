@@ -25,9 +25,11 @@ public class PlayerTurnState implements State{
     }
 
     @Override
-    public void move(Direction direction) {
+    public boolean move(Direction direction) {
         if (getInstance().getBoard().movePlayer(isWhite, direction)){
             getInstance().getStateManager().setCurrentState(new PlayerTurnState(!isWhite));
+            return true;
         }
+        return false;
     }
 }

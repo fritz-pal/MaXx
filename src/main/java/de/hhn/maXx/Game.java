@@ -66,10 +66,9 @@ public class Game {
         ConsoleGame.paint();
         boolean isWhite = stateManager.isWhitesTurn();
         Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
-        while (!board.movePlayerPossible(isWhite, direction)) {
+        while (!getInstance().getStateManager().move(direction)) {
             direction = getInput("Du kannst nicht in diese Richtung laufen! Versuche es nochmal: ");
         }
-        getInstance().getStateManager().move(direction);
         if (scoreB.doubleValue() >= 53) return GameStatus.BLACK_WIN;
         if (scoreW.doubleValue() >= 53) return GameStatus.WHITE_WIN;
         return GameStatus.CONTINUE;

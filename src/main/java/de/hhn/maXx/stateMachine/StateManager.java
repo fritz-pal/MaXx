@@ -22,8 +22,8 @@ public class StateManager implements State {
     }
 
     @Override
-    public void move(Direction direction) {
-        currentState.move(direction);
+    public boolean move(Direction direction) {
+        return currentState.move(direction);
     }
 
     public void setCurrentState(State newState) {

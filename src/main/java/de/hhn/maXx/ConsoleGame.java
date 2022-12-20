@@ -1,6 +1,7 @@
 package de.hhn.maXx;
 
 import de.hhn.maXx.util.Fraction;
+import de.hhn.maXx.util.IntVector2;
 
 /**
  * Statische Klasse zum Ausgeben des Spielbretts und Spielstands auf der Konsole.
@@ -22,9 +23,10 @@ public class ConsoleGame {
             StringBuilder line2 = new StringBuilder("│");
             StringBuilder line3 = new StringBuilder("│");
             for (int x = 0; x < 8; x++) {
-                switch (Game.getInstance().getBoard().getFieldState(x, y)) {
+                IntVector2 current = new IntVector2(x, y);
+                switch (Game.getInstance().getBoard().getFieldState(current)) {
                     case FRACTION -> {
-                        Fraction fraction = Game.getInstance().getBoard().getFraction(x, y);
+                        Fraction fraction = Game.getInstance().getBoard().getFraction(current);
                         int spacesNum = 3 - fraction.getNumerator().toString().length();
                         int spacesDen = 3 - fraction.getDenominator().toString().length();
                         line1.append("   ").append(" ".repeat(spacesNum)).append(fraction.getNumerator()).append("   ");
