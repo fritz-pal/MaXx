@@ -27,11 +27,11 @@ public class ConsoleGame {
                 switch (Game.getInstance().getBoard().getFieldState(current)) {
                     case FRACTION -> {
                         Fraction fraction = Game.getInstance().getBoard().getFraction(current);
-                        int spacesNum = 3 - fraction.getNumerator().toString().length();
-                        int spacesDen = 3 - fraction.getDenominator().toString().length();
-                        line1.append("   ").append(" ".repeat(spacesNum)).append(fraction.getNumerator()).append("   ");
+                        int zerosNum = 3 - fraction.getNumerator().toString().length();
+                        int zerosDen = 3 - fraction.getDenominator().toString().length();
+                        line1.append("   ").append("0".repeat(zerosNum)).append(fraction.getNumerator()).append("   ");
                         line2.append("  ─────  ");
-                        line3.append("   ").append(" ".repeat(spacesDen)).append(fraction.getDenominator()).append("   ");
+                        line3.append("   ").append("0".repeat(zerosDen)).append(fraction.getDenominator()).append("   ");
                     }
                     case EMPTY -> {
                         line1.append("         ");
@@ -39,14 +39,14 @@ public class ConsoleGame {
                         line3.append("         ");
                     }
                     case WHITE -> {
-                        line1.append("         ");
-                        line2.append("    W    ");
-                        line3.append("         ");
+                        line1.append(" ┌─────┐ ");
+                        line2.append(" │  W  │ ");
+                        line3.append(" └─────┘ ");
                     }
                     case BLACK -> {
-                        line1.append("         ");
-                        line2.append("    B    ");
-                        line3.append("         ");
+                        line1.append(" ┌─────┐ ");
+                        line2.append(" │  B  │ ");
+                        line3.append(" └─────┘ ");
                     }
                 }
             }
@@ -78,8 +78,8 @@ public class ConsoleGame {
                 line2.append("  Schwarz: ").append("─".repeat(lengthNum));
                 line3.append("           ").append(schwarz.getDenominator());
             }
-            case 6 -> line2.append(" │").append("█".repeat(schwarz.intValue())).append(" ".repeat(53 - schwarz.intValue())).append("│ ").append(schwarz.intValue());
-            case 2 -> line2.append(" │").append("█".repeat(weiss.intValue())).append(" ".repeat(53 - weiss.intValue())).append("│ ").append(weiss.intValue());
+            case 6 -> line2.append(" │").append("█".repeat(schwarz.intValue())).append(" ".repeat(Math.max(53 - schwarz.intValue(), 0))).append("│ ").append(schwarz.intValue());
+            case 2 -> line2.append(" │").append("█".repeat(weiss.intValue())).append(" ".repeat(Math.max(53 - weiss.intValue(), 0))).append("│ ").append(weiss.intValue());
         }
         switch (lineCount) {
             case 6,2 -> {
