@@ -36,13 +36,13 @@ public class Field {
 */
     private Fraction alt() {
         Fraction erg;
-        do {
-            Fraction base = new Fraction(Math.min((int)(Math.random() * 4) + 2, 9), 1); //Random Fraction between 2 and 5 (Integer)
-            int offsetDen = (int)(Math.random() * 190 + 10);
-            int offsetNum = (int)(offsetDen * - 1 + Math.random() * offsetDen * 2);
-            Fraction offset = new Fraction(offsetNum, offsetDen);
-            erg = base.add(offset);
-        } while(!fractionFine(erg));
+        Fraction base = new Fraction(Math.min((int)(Math.random() * 4) + 2, 9), 1); //Random Fraction between 2 and 5 (Integer)
+        int offsetDen = (int)(Math.random() * 190 + 10);
+        int offsetNum = (int)(offsetDen * - 1 + Math.random() * offsetDen * 2);
+        Fraction offset = new Fraction(offsetNum, offsetDen);
+        erg = base.add(offset);
+        if (!fractionFine(erg))
+            erg = alt();
         return erg;
     }
 
