@@ -38,6 +38,7 @@ public class Main {
                     case WHITE_WIN -> System.out.println("Weiß gewinnt!!");
                     case BLACK_WIN -> System.out.println("Schwarz gewinnt!!");
                 }
+                ConsoleGame.paint();
                 sound();
             }
             String input = MyIO.promptAndRead("Schreibe PLAY um zu Spielen oder STOP um das Programm zu Beenden: ");
