@@ -16,25 +16,10 @@ public class Field {
 
     public Field() {
         state = FieldState.FRACTION;
-        fraction = alt();
+        fraction = initFraction();
     }
-/*
-    private void initFraction() {
-        int randDen = (int) (Math.random() * 1000);
-        int randNum = (int) (Math.random() * (Math.min(randDen*5, 1000) - randDen)) + randDen;
-        if (randDen == 0) {
-            initFraction();
-            return;
-        }
-        fraction = new Fraction(randNum, randDen);
-        if (fraction.getNumerator().compareTo(new BigInteger("9")) <= 0 || fraction.getNumerator().compareTo(new BigInteger("999")) > 0) {
-            initFraction();
-        } else if (fraction.getDenominator().compareTo(new BigInteger("9")) <= 0 || fraction.getDenominator().compareTo(new BigInteger("999")) > 0) {
-            initFraction();
-        }
-    }
-*/
-    private Fraction alt() {
+
+    private Fraction initFraction() {
         Fraction erg;
         Fraction base = new Fraction(Math.min((int)(Math.random() * 4) + 2, 9), 1); //Random Fraction between 2 and 5 (Integer)
         int offsetDen = (int)(Math.random() * 190 + 10);
@@ -42,7 +27,7 @@ public class Field {
         Fraction offset = new Fraction(offsetNum, offsetDen);
         erg = base.add(offset);
         if (!fractionFine(erg))
-            erg = alt();
+            erg = initFraction();
         return erg;
     }
 
