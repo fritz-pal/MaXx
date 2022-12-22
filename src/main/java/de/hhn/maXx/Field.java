@@ -12,29 +12,26 @@ import de.hhn.maXx.util.Fraction;
  */
 public class Field {
     private FieldState state;
-    private final Fraction fraction;
+    private Fraction fraction;
 
     public Field() {
         state = FieldState.FRACTION;
-        fraction = initFraction();
+        initFraction();
     }
 
-    private Fraction initFraction() {
-        Fraction erg;
-        Fraction base = new Fraction(Math.min((int)(Math.random() * 4) + 2, 9), 1); //Random Fraction between 2 and 5 (Integer)
-        int offsetDen = (int)(Math.random() * 190 + 10);
-        int offsetNum = (int)(offsetDen * - 1 + Math.random() * offsetDen * 2);
-        Fraction offset = new Fraction(offsetNum, offsetDen);
-        erg = base.add(offset);
-        if (!fractionFine(erg))
-            erg = initFraction();
-        return erg;
+    private void initFraction() {
+        int randDen = (int) (Math.random() * 990 + 10);
+        int randNum = (int) (Math.random() * (Math.min(randDen * 8, 1000) - randDen)) + randDen;
+        fraction = new Fraction(randNum, randDen);
+        if (!fractionFine()) {
+            initFraction();
+        }
     }
 
-    private boolean fractionFine(Fraction fraction) {
+    private boolean fractionFine() {
         int numLen = fraction.getNumerator().toString().length();
-        int deLen = fraction.getDenominator().toString().length();
-        return numLen > 1 && numLen < 4 && deLen > 1 && deLen < 4;
+        int denLen = fraction.getDenominator().toString().length();
+        return numLen > 1 && numLen < 4 && denLen > 1 && denLen < 4;
     }
 
     public Fraction getFraction() {

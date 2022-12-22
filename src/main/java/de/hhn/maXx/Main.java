@@ -3,7 +3,10 @@ package de.hhn.maXx;
 import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.MyIO;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,7 +22,7 @@ import java.io.IOException;
  * erreicht hat. Man kann abwechselnd Eingaben für Spielzüge des W-Spielers und des B-Spielers machen oder
  * aber zur Steuerung des Programms, etwa zum Beenden.
  * – Überlegen Sie sich vor der Implementierung, welche Klassen, Interfaces, Objekte (für das Spielbrett, die
- *   Dialogkomponente, etc.) benötigt werden und welche Methoden. (Denken Sie auch an mögliche spätere Erweiterungen des Spiels.)
+ * Dialogkomponente, etc.) benötigt werden und welche Methoden. (Denken Sie auch an mögliche spätere Erweiterungen des Spiels.)
  * – Überlegen Sie, wie ein Benutzer das Programm steuern soll und wie die Ausgabe gestaltet wird.
  *
  * @author Henri Staudenrausch, Lukas Vier, Nico Vogel, Nadine Schoch, Dennis Mayer
@@ -34,28 +37,32 @@ public class Main {
             ConsoleGame.clearConsole();
             if (status != null) {
                 switch (status) {
-                    case DRAW -> System.out.println("Unentschieden!");
-                    case WHITE_WIN -> System.out.println("Weiß gewinnt!!");
-                    case BLACK_WIN -> System.out.println("Schwarz gewinnt!!");
+                    case WHITE_WIN -> {
+                        System.out.println("Weiß gewinnt!!");
+                        ConsoleGame.paint();
+                        sound();
+                    }
+                    case BLACK_WIN -> {
+                        System.out.println("Schwarz gewinnt!!");
+                        ConsoleGame.paint();
+                        sound();
+                    }
+                    case INVALID -> System.out.println("Ungültige Eingabe!");
                 }
-                ConsoleGame.paint();
-                sound();
             }
             String input = MyIO.promptAndRead("Schreibe PLAY um zu Spielen oder STOP um das Programm zu Beenden: ");
             switch (input.toLowerCase()) {
                 case "play" -> {
+                    Game.startNewInstance();
+                    do {
+                        status = Game.getInstance().continueGame();
+                    } while (status == GameStatus.CONTINUE);
                 }
                 case "stop" -> {
                     break programmschleife;
                 }
-                default -> {
-                    continue;
-                }
+                default -> status = GameStatus.INVALID;
             }
-            Game.startNewInstance();
-            do {
-                status = Game.getInstance().continueGame();
-            } while (status == GameStatus.CONTINUE);
         }
     }
 
