@@ -14,7 +14,6 @@ public class ConsoleGame {
     }
 
     public static void paint() {
-        clearConsole();
         System.out.println("┌" + "─".repeat(74) + "┐");
         String emptyLine = "│" + " ".repeat(74) + "│";
 

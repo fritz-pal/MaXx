@@ -38,13 +38,13 @@ public class Main {
             if (status != null) {
                 switch (status) {
                     case WHITE_WIN -> {
-                        System.out.println("Weiß gewinnt!!");
                         ConsoleGame.paint();
+                        System.out.println("Weiß gewinnt!!");
                         sound();
                     }
                     case BLACK_WIN -> {
-                        System.out.println("Schwarz gewinnt!!");
                         ConsoleGame.paint();
+                        System.out.println("Schwarz gewinnt!!");
                         sound();
                     }
                     case INVALID -> System.out.println("Ungültige Eingabe!");

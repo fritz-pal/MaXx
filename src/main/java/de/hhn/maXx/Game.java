@@ -70,6 +70,7 @@ public class Game {
     }
 
     public GameStatus continueGame() {
+        ConsoleGame.clearConsole();
         ConsoleGame.paint();
         boolean isWhite = stateManager.isWhitesTurn();
         Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
