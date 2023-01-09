@@ -32,8 +32,8 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         GameStatus status = null;
-        programmschleife:
-        while (true) {
+        boolean stop = false;
+        while (!stop) {
             ConsoleGame.clearConsole();
             if (status != null) {
                 switch (status) {
@@ -58,9 +58,7 @@ public class Main {
                         status = Game.getInstance().continueGame();
                     } while (status == GameStatus.CONTINUE);
                 }
-                case "stop" -> {
-                    break programmschleife;
-                }
+                case "stop" -> stop = true;
                 default -> status = GameStatus.INVALID;
             }
         }
