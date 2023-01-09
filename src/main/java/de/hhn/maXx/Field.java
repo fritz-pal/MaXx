@@ -23,9 +23,7 @@ public class Field {
         int randDen = (int) (Math.random() * 490 + 10);
         int randNum = (int) (Math.random() * (Math.min(randDen * 8, 1000) - randDen)) + randDen;
         fraction = new Fraction(randNum, randDen);
-        if (!fractionFine()) {
-            initFraction();
-        }
+        if (!fractionFine()) initFraction();
     }
 
     private boolean fractionFine() {

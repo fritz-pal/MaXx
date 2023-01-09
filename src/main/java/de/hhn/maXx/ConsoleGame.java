@@ -78,9 +78,9 @@ public class ConsoleGame {
                 line3.append("           ").append(schwarz.getDenominator());
             }
             case 6 ->
-                    line2.append(" │").append("█".repeat(schwarz.intValue())).append(" ".repeat(Math.max(53 - schwarz.intValue(), 0))).append("│ ").append(schwarz.intValue());
+                    line2.append(" │").append("█".repeat(Math.min(53, schwarz.intValue()))).append(" ".repeat(Math.max(53 - schwarz.intValue(), 0))).append("│ ").append(schwarz.intValue());
             case 2 ->
-                    line2.append(" │").append("█".repeat(weiss.intValue())).append(" ".repeat(Math.max(53 - weiss.intValue(), 0))).append("│ ").append(weiss.intValue());
+                    line2.append(" │").append("█".repeat(Math.min(53, weiss.intValue()))).append(" ".repeat(Math.max(53 - weiss.intValue(), 0))).append("│ ").append(weiss.intValue());
         }
         switch (lineCount) {
             case 6, 2 -> {
