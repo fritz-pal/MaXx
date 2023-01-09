@@ -1,6 +1,6 @@
 package de.hhn.maXx.stateMachine;
 
-import de.hhn.maXx.util.Direction;
+import de.hhn.maXx.util.GameStatus;
 
 /**
  * Manager für die State Machine
@@ -21,8 +21,8 @@ public class StateManager implements State {
     }
 
     @Override
-    public boolean move(Direction direction) {
-        return currentState.move(direction);
+    public GameStatus turn() {
+        return currentState.turn();
     }
 
     public void setCurrentState(State newState) {

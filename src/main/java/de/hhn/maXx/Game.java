@@ -1,10 +1,8 @@
 package de.hhn.maXx;
 
 import de.hhn.maXx.stateMachine.StateManager;
-import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.util.GameStatus;
-import de.hhn.maXx.util.MyIO;
 
 /**
  * Klasse zum Managen des Spiels (Singleton)
@@ -48,9 +46,11 @@ public class Game {
         return scoreW;
     }
 
+
     public Fraction getScoreB() {
         return scoreB;
     }
+    
 
     public Board getBoard() {
         return board;
@@ -72,23 +72,8 @@ public class Game {
     public GameStatus continueGame() {
         ConsoleGame.clearConsole();
         ConsoleGame.paint();
-        boolean isWhite = stateManager.isWhitesTurn();
-        Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
-        while (!getInstance().getStateManager().move(direction))
-            direction = getInput("Du kannst nicht in diese Richtung laufen! Versuche es nochmal: ");
-        if (scoreB.doubleValue() >= 53) return GameStatus.BLACK_WIN;
-        if (scoreW.doubleValue() >= 53) return GameStatus.WHITE_WIN;
-        return GameStatus.CONTINUE;
+        return stateManager.turn();
     }
 
-    public Direction getInput(String prompt) {
-        Direction dir;
-        String input = MyIO.promptAndRead(prompt);
-        dir = Direction.fromString(input);
-        while (dir == null) {
-            input = MyIO.promptAndRead("Gebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein:");
-            dir = Direction.fromString(input);
-        }
-        return dir;
-    }
+
 }

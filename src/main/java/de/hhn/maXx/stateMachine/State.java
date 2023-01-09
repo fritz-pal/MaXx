@@ -1,6 +1,6 @@
 package de.hhn.maXx.stateMachine;
 
-import de.hhn.maXx.util.Direction;
+import de.hhn.maXx.util.GameStatus;
 
 /**
  * Interface als Grundlage für die States.
@@ -10,5 +10,5 @@ import de.hhn.maXx.util.Direction;
  **/
 public interface State {
     boolean isWhitesTurn();
-    boolean move(Direction direction);
+    GameStatus turn();
 }
