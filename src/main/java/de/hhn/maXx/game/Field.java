@@ -1,4 +1,4 @@
-package de.hhn.maXx;
+package de.hhn.maXx.game;
 
 import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;

@@ -1,4 +1,4 @@
-package de.hhn.maXx;
+package de.hhn.maXx.game;
 
 import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.util.IntVector2;

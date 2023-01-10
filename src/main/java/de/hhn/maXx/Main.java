@@ -1,5 +1,7 @@
 package de.hhn.maXx;
 
+import de.hhn.maXx.game.ConsoleGame;
+import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.MyIO;
 

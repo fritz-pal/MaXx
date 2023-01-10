@@ -4,7 +4,7 @@ import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.MyIO;
 
-import static de.hhn.maXx.Game.getInstance;
+import static de.hhn.maXx.game.Game.getInstance;
 
 /**
  * Diese Klasse definiert die Aktion im Zustand: Spieler an der Reihe.
