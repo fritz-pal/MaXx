@@ -15,29 +15,29 @@ public class Field {
     private Fraction fraction;
 
     public Field() {
-        state = FieldState.FRACTION;
+        this.state = FieldState.FRACTION;
         initFraction();
     }
 
     private void initFraction() {
         int randDen = (int) (Math.random() * 490 + 10);
         int randNum = (int) (Math.random() * (Math.min(randDen * 8, 1000) - randDen)) + randDen;
-        fraction = new Fraction(randNum, randDen);
+        this.fraction = new Fraction(randNum, randDen);
         if (!fractionFine()) initFraction();
     }
 
     private boolean fractionFine() {
-        int numLen = fraction.getNumerator().toString().length();
-        int denLen = fraction.getDenominator().toString().length();
+        int numLen = this.fraction.getNumerator().toString().length();
+        int denLen = this.fraction.getDenominator().toString().length();
         return numLen > 1 && numLen < 4 && denLen > 1 && denLen < 4;
     }
 
     public Fraction getFraction() {
-        return fraction;
+        return this.fraction;
     }
 
     public FieldState getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(FieldState state) {

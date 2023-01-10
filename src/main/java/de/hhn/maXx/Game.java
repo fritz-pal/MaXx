@@ -23,10 +23,10 @@ public class Game {
     }
     
     private void init(){
-        board = new Board();
-        scoreW = new Fraction(0, 1);
-        scoreB = new Fraction(0, 1);
-        stateManager = new StateManager();
+        this.board = new Board();
+        this.scoreW = new Fraction(0, 1);
+        this.scoreB = new Fraction(0, 1);
+        this.stateManager = new StateManager();
     }
 
     public static Game getInstance() {
@@ -43,37 +43,35 @@ public class Game {
     }
 
     public Fraction getScoreW() {
-        return scoreW;
+        return this.scoreW;
     }
 
 
     public Fraction getScoreB() {
-        return scoreB;
+        return this.scoreB;
     }
     
 
     public Board getBoard() {
-        return board;
+        return this.board;
     }
 
     public StateManager getStateManager() {
-        return stateManager;
+        return this.stateManager;
     }
 
     public void addScoreBlack(Fraction fraction) {
-        scoreB = scoreB.add(fraction);
+        this.scoreB = this.scoreB.add(fraction);
 
     }
 
     public void addScoreWhite(Fraction fraction) {
-        scoreW = scoreW.add(fraction);
+        this.scoreW = this.scoreW.add(fraction);
     }
 
     public GameStatus continueGame() {
         ConsoleGame.clearConsole();
         ConsoleGame.paint();
-        return stateManager.turn();
+        return this.stateManager.turn();
     }
-
-
 }

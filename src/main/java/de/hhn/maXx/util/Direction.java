@@ -15,11 +15,11 @@ public enum Direction {
 
     public static Direction fromString(String s) {
         return switch (s.toLowerCase()) {
-            case "left" -> LEFT;
-            case "right" -> RIGHT;
-            case "up" -> UP;
-            case "down" -> DOWN;
-            case "diagonal" -> DIAGONAL;
+            case "left", "w" -> LEFT;
+            case "right", "e", "o" -> RIGHT;
+            case "up", "n" -> UP;
+            case "down", "s" -> DOWN;
+            case "diagonal", "d" -> DIAGONAL;
             default -> null;
         };
     }

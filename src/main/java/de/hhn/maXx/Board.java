@@ -20,40 +20,44 @@ public class Board {
     private IntVector2 whitePos, blackPos;
 
     public Board() {
-        grid = new Field[8][8];
+        this.grid = new Field[8][8];
         fillField();
-        whitePos = new IntVector2(3, 2);
-        blackPos = new IntVector2(4, 5);
-        setFieldState(whitePos, FieldState.WHITE);
-        setFieldState(blackPos, FieldState.BLACK);
+        this.whitePos = new IntVector2(3, 2);
+        this.blackPos = new IntVector2(4, 5);
+        setFieldState(this.whitePos, FieldState.WHITE);
+        setFieldState(this.blackPos, FieldState.BLACK);
     }
 
     public FieldState getFieldState(IntVector2 pos) {
-        return grid[pos.x][pos.y].getState();
+        return this.grid[pos.x][pos.y].getState();
     }
 
     public void setFieldState(IntVector2 pos, FieldState state) {
-        grid[pos.x][pos.y].setState(state);
+        this.grid[pos.x][pos.y].setState(state);
     }
 
     public Fraction getFraction(IntVector2 pos) {
-        if (grid[pos.x][pos.y].getState() == FieldState.FRACTION) {
-            return grid[pos.x][pos.y].getFraction();
+        if (this.grid[pos.x][pos.y].getState() == FieldState.FRACTION) {
+            return this.grid[pos.x][pos.y].getFraction();
         } else {
-            return new Fraction(0, 1);
+            return Fraction.ZERO;
         }
 
     }
 
     private void fillField() {
-        IntStream.range(0, 8).forEach(x -> IntStream.range(0, 8).forEach(y -> grid[x][y] = new Field()));
+        IntStream.range(0, 8).forEach(
+                x -> IntStream.range(0, 8).forEach(
+                        y -> this.grid[x][y] = new Field()
+                )
+        );
     }
 
     private boolean movePossible(IntVector2 target) {
         return !posOutOfBounds(target) && !getFieldState(target).equals(FieldState.BLACK) && !getFieldState(target).equals(FieldState.WHITE);
     }
 
-    private boolean posOutOfBounds(IntVector2 pos) {
+    private static boolean posOutOfBounds(IntVector2 pos) {
         return pos.x > 7 || pos.x < 0 || pos.y > 7 || pos.y < 0;
     }
 
@@ -63,15 +67,15 @@ public class Board {
             if (isWhite) {
                 if (getFieldState(target).equals(FieldState.FRACTION))
                     Game.getInstance().addScoreWhite(getFraction(target));
-                setFieldState(whitePos, FieldState.EMPTY);
+                setFieldState(this.whitePos, FieldState.EMPTY);
                 setFieldState(target, FieldState.WHITE);
-                whitePos = target;
+                this.whitePos = target;
             } else {
                 if (getFieldState(target).equals(FieldState.FRACTION))
                     Game.getInstance().addScoreBlack(getFraction(target));
-                setFieldState(blackPos, FieldState.EMPTY);
+                setFieldState(this.blackPos, FieldState.EMPTY);
                 setFieldState(target, FieldState.BLACK);
-                blackPos = target;
+                this.blackPos = target;
             }
             return true;
         }
@@ -79,7 +83,7 @@ public class Board {
     }
 
     private IntVector2 getNewCoords(boolean isWhite, Direction direction) {
-        IntVector2 pos = isWhite ? whitePos : blackPos;
+        IntVector2 pos = isWhite ? this.whitePos : this.blackPos;
 
         pos = pos.add(switch (direction) {
             case RIGHT -> new IntVector2(1, 0);

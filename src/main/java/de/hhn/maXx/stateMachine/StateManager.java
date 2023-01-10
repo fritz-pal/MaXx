@@ -12,20 +12,20 @@ public class StateManager implements State {
     State currentState;
 
     public StateManager() {
-        currentState = new PlayerTurnState(true);
+        this.currentState = new PlayerTurnState(true);
     }
 
     @Override
     public boolean isWhitesTurn() {
-        return currentState.isWhitesTurn();
+        return this.currentState.isWhitesTurn();
     }
 
     @Override
     public GameStatus turn() {
-        return currentState.turn();
+        return this.currentState.turn();
     }
 
     public void setCurrentState(State newState) {
-        currentState = newState;
+        this.currentState = newState;
     }
 }

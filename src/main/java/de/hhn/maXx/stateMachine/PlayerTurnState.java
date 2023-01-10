@@ -22,15 +22,15 @@ public class PlayerTurnState implements State{
 
     @Override
     public boolean isWhitesTurn() {
-        return isWhite;
+        return this.isWhite;
     }
 
     @Override
     public GameStatus turn() {
-        Direction direction = getInput((isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
-        while (!getInstance().getBoard().movePlayer(isWhite, direction))
+        Direction direction = getInput((this.isWhite ? "Weiß" : "Schwarz") + " ist an der Reihe. \nGebe LEFT, RIGHT, UP, DOWN oder DIAGONAL ein, um dich zu bewegen:");
+        while (!getInstance().getBoard().movePlayer(this.isWhite, direction))
             direction = getInput("Du kannst nicht in diese Richtung laufen! Versuche es nochmal: ");
-        getInstance().getStateManager().setCurrentState(new PlayerTurnState(!isWhite));
+        getInstance().getStateManager().setCurrentState(new PlayerTurnState(!this.isWhite));
         if (getInstance().getScoreB().doubleValue() >= 53) return GameStatus.BLACK_WIN;
         if (getInstance().getScoreW().doubleValue() >= 53) return GameStatus.WHITE_WIN;
         return GameStatus.CONTINUE;

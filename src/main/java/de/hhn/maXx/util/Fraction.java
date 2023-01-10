@@ -13,9 +13,16 @@ import java.math.BigInteger;
  **/
 public class Fraction extends Number implements Comparable<Fraction> {
     public static final  Fraction ZERO = new Fraction(0, 1);
-
     protected BigInteger numerator;
     protected BigInteger denominator;
+
+    public BigInteger getNumerator() {
+        return this.numerator;
+    }
+
+    public BigInteger getDenominator() {
+        return this.denominator;
+    }
 
     public Fraction(BigInteger numerator, BigInteger denominator) {
         if (denominator.equals(BigInteger.ZERO)) throw new ArithmeticException("Denominator must not be zero!");
@@ -78,9 +85,9 @@ public class Fraction extends Number implements Comparable<Fraction> {
     }
 
     public Fraction reduce() {
-        BigInteger gcd = numerator.gcd(denominator);
-        BigInteger newNum = numerator.divide(gcd);
-        BigInteger newDen = denominator.divide(gcd);
+        BigInteger gcd = this.numerator.gcd(denominator);
+        BigInteger newNum = this.numerator.divide(gcd);
+        BigInteger newDen = this.denominator.divide(gcd);
         if (newDen.compareTo(BigInteger.ZERO) < 0) {
             newNum = newNum.negate();
             newDen = newDen.negate();
@@ -89,12 +96,12 @@ public class Fraction extends Number implements Comparable<Fraction> {
     }
 
     public boolean isInteger() {
-        return denominator.equals(BigInteger.ONE);
+        return this.denominator.equals(BigInteger.ONE);
     }
 
     @Override
     public String toString() {
-        return numerator + "/" + denominator;
+        return this.numerator + "/" + this.denominator;
     }
 
     @Override
@@ -121,22 +128,14 @@ public class Fraction extends Number implements Comparable<Fraction> {
 
     @Override
     public double doubleValue() {
-        return numerator.doubleValue() / denominator.doubleValue();
+        return this.numerator.doubleValue() / this.denominator.doubleValue();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Fraction f)) return false;
-        if (!numerator.equals(f.numerator)) return false;
-        return denominator.equals(f.denominator);
-    }
-
-    public BigInteger getNumerator() {
-        return numerator;
-    }
-
-    public BigInteger getDenominator() {
-        return denominator;
+        if (!this.numerator.equals(f.numerator)) return false;
+        return this.denominator.equals(f.denominator);
     }
 }
