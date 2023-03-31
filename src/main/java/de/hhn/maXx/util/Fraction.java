@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * @version 4, 20.12.2022
  **/
 public class Fraction extends Number implements Comparable<Fraction> {
-    public static final  Fraction ZERO = new Fraction(0, 1);
+    public static final Fraction ZERO = new Fraction(0, 1);
     protected BigInteger numerator;
     protected BigInteger denominator;
 

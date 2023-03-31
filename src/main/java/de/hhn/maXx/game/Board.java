@@ -47,9 +47,9 @@ public class Board {
 
     private void fillField() {
         IntStream.range(0, 8).forEach(
-                x -> IntStream.range(0, 8).forEach(
-                        y -> this.grid[x][y] = new Field()
-                )
+            x -> IntStream.range(0, 8).forEach(
+                y -> this.grid[x][y] = new Field()
+            )
         );
     }
 
