@@ -1,5 +1,6 @@
 package de.hhn.maXx;
 
+import de.hhn.maXx.frontend.MaXxWindow;
 import de.hhn.maXx.game.ConsoleGame;
 import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.GameStatus;
@@ -33,6 +34,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
+        new MaXxWindow().setVisible(true);
+
+
         GameStatus status = null;
         boolean stop = false;
         while (!stop) {
