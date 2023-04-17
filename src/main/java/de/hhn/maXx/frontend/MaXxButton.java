@@ -1,6 +1,8 @@
 package de.hhn.maXx.frontend;
 
+import de.hhn.maXx.game.Field;
 import de.hhn.maXx.util.FieldState;
+import de.hhn.maXx.util.Fraction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,19 +13,17 @@ public class MaXxButton extends JButton {
     public static final int BUTTON_SIZE = 800 / 8;
     private final int x;
     private final int y;
-    private final MaXxWindow window;
     private final JLabel nom;
     private final JLabel den;
-    boolean hovering = false;
+    boolean isDark;
     private FieldState state = FieldState.FRACTION;
 
-    public MaXxButton(MaXxWindow window, int x, int y) {
-        this.window = window;
+    public MaXxButton(JPanel panel, int x, int y) {
         this.x = x;
         this.y = y;
+        isDark = (x + y) % 2 == 0;
 
         //button settings
-        this.setBounds(x * BUTTON_SIZE + window.getWidth() / 2 - BUTTON_SIZE * 4, y * BUTTON_SIZE + window.getHeight() / 2 - BUTTON_SIZE * 4, BUTTON_SIZE, BUTTON_SIZE);
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
@@ -32,17 +32,17 @@ public class MaXxButton extends JButton {
         this.addMouseListener(mouseListener());
 
         //nominator label
-        nom = makeNumberLabel("321", false);
+        nom = makeNumberLabel("", false);
         this.add(nom);
 
         //denominator label
-        den = makeNumberLabel("123", true);
+        den = makeNumberLabel("", true);
         this.add(den);
 
-        this.setBackground(((x + y) % 2 == 0) ? new Color(0x2F, 0x31, 0x36) : new Color(0x36, 0x39, 0x3F));
+        this.setBackground((isDark ? new Color(0x2F, 0x31, 0x36) : new Color(0x36, 0x39, 0x3F)));
 
-        //add button to window
-        window.getContentPane().add(this);
+        //add button to panel
+        panel.add(this);
     }
 
 
@@ -50,23 +50,32 @@ public class MaXxButton extends JButton {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        this.setBounds(x * BUTTON_SIZE + window.getWidth() / 2 - BUTTON_SIZE * 4, y * BUTTON_SIZE + window.getHeight() / 2 - BUTTON_SIZE * 4, BUTTON_SIZE, BUTTON_SIZE);
 
-        g.setColor(new Color(0x96, 0x98, 0x9D));
         if (state == FieldState.FRACTION) {
             //draw a horizontal line
+            g.setColor(new Color(0x96, 0x98, 0x9D));
             g.drawLine(BUTTON_SIZE / 5, BUTTON_SIZE / 2, BUTTON_SIZE / 5 * 4, BUTTON_SIZE / 2);
+            g.drawLine(BUTTON_SIZE / 5, BUTTON_SIZE / 2 + 1, BUTTON_SIZE / 5 * 4, BUTTON_SIZE / 2 + 1);
+            g.drawLine(BUTTON_SIZE / 5, BUTTON_SIZE / 2 - 1, BUTTON_SIZE / 5 * 4, BUTTON_SIZE / 2 - 1);
             nom.setVisible(true);
             den.setVisible(true);
         } else {
             nom.setVisible(false);
             den.setVisible(false);
         }
+        if(state == FieldState.WHITE){
+            g.setColor(Color.WHITE);
+            g.fillOval(BUTTON_SIZE / 4, BUTTON_SIZE / 4, BUTTON_SIZE / 2, BUTTON_SIZE / 2);
+        }
+        if(state == FieldState.BLACK){
+            g.setColor(Color.BLACK);
+            g.fillOval(BUTTON_SIZE / 4, BUTTON_SIZE / 4, BUTTON_SIZE / 2, BUTTON_SIZE / 2);
+        }
     }
 
     // creates a label with the given number formatted as a fraction
     private JLabel makeNumberLabel(String text, boolean bottom) {
-        JLabel num = new JLabel("321");
+        JLabel num = new JLabel(text);
         num.setBounds(0, bottom ? BUTTON_SIZE / 2 + 1 : 0, BUTTON_SIZE, BUTTON_SIZE / 2);
         num.setForeground(new Color(0x96, 0x98, 0x9D));
         num.setFont(new Font("Jetbrains Mono", Font.PLAIN, BUTTON_SIZE / 4));
@@ -75,8 +84,13 @@ public class MaXxButton extends JButton {
         return num;
     }
 
-    public void update() {
-        //TODO update denominator and nominator labels
+    public void update(Field field) {
+        state = field.getState();
+        if (state == FieldState.FRACTION) {
+            Fraction f = field.getFraction();
+            nom.setText(f.getNumerator() + "");
+            den.setText(f.getDenominator() + "");
+        }
         repaint();
     }
 
@@ -99,12 +113,12 @@ public class MaXxButton extends JButton {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                hovering = true;
+                setBorderPainted(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                hovering = false;
+                setBorderPainted(false);
             }
         };
     }

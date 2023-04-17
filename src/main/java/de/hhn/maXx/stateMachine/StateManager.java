@@ -1,5 +1,6 @@
 package de.hhn.maXx.stateMachine;
 
+import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.GameStatus;
 
 /**
@@ -11,8 +12,8 @@ import de.hhn.maXx.util.GameStatus;
 public class StateManager implements State {
     State currentState;
 
-    public StateManager() {
-        this.currentState = new PlayerTurnState(true);
+    public StateManager(Game game) {
+        this.currentState = new PlayerTurnState(true, game);
     }
 
     @Override

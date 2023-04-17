@@ -1,10 +1,6 @@
 package de.hhn.maXx;
 
-import de.hhn.maXx.frontend.MaXxWindow;
-import de.hhn.maXx.game.ConsoleGame;
-import de.hhn.maXx.game.Game;
-import de.hhn.maXx.util.GameStatus;
-import de.hhn.maXx.util.MyIO;
+import de.hhn.maXx.frontend.StartScreen;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -34,40 +30,40 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        new MaXxWindow().setVisible(true);
+        new StartScreen();
 
-
-        GameStatus status = null;
-        boolean stop = false;
-        while (!stop) {
-            ConsoleGame.clearConsole();
-            if (status != null) {
-                switch (status) {
-                    case WHITE_WIN -> {
-                        ConsoleGame.paint();
-                        System.out.println("Weiß gewinnt!!");
-                        sound();
-                    }
-                    case BLACK_WIN -> {
-                        ConsoleGame.paint();
-                        System.out.println("Schwarz gewinnt!!");
-                        sound();
-                    }
-                    case INVALID -> System.out.println("Ungültige Eingabe!");
-                }
-            }
-            String input = MyIO.promptAndRead("Schreibe PLAY um zu Spielen oder STOP um das Programm zu Beenden: ");
-            switch (input.toLowerCase()) {
-                case "play" -> {
-                    Game.startNewInstance();
-                    do {
-                        status = Game.getInstance().continueGame();
-                    } while (status == GameStatus.CONTINUE);
-                }
-                case "stop" -> stop = true;
-                default -> status = GameStatus.INVALID;
-            }
-        }
+//
+//        GameStatus status = null;
+//        boolean stop = false;
+//        while (!stop) {
+//            ConsoleGame.clearConsole();
+//            if (status != null) {
+//                switch (status) {
+//                    case WHITE_WIN -> {
+//                        ConsoleGame.paint();
+//                        System.out.println("Weiß gewinnt!!");
+//                        sound();
+//                    }
+//                    case BLACK_WIN -> {
+//                        ConsoleGame.paint();
+//                        System.out.println("Schwarz gewinnt!!");
+//                        sound();
+//                    }
+//                    case INVALID -> System.out.println("Ungültige Eingabe!");
+//                }
+//            }
+//            String input = MyIO.promptAndRead("Schreibe PLAY um zu Spielen oder STOP um das Programm zu Beenden: ");
+//            switch (input.toLowerCase()) {
+//                case "play" -> {
+//                    Game.startNewInstance();
+//                    do {
+//                        status = Game.getInstance().continueGame();
+//                    } while (status == GameStatus.CONTINUE);
+//                }
+//                case "stop" -> stop = true;
+//                default -> status = GameStatus.INVALID;
+//            }
+//        }
     }
 
     private static void sound() {

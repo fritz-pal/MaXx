@@ -17,9 +17,11 @@ import java.util.stream.IntStream;
 
 public class Board {
     private final Field[][] grid;
+    Game game;
     private IntVector2 whitePos, blackPos;
 
-    public Board() {
+    public Board(Game game) {
+        this.game = game;
         this.grid = new Field[8][8];
         fillField();
         this.whitePos = new IntVector2(3, 2);
@@ -42,7 +44,6 @@ public class Board {
         } else {
             return Fraction.ZERO;
         }
-
     }
 
     private void fillField() {
@@ -66,13 +67,13 @@ public class Board {
         if (movePossible(target)) {
             if (isWhite) {
                 if (getFieldState(target).equals(FieldState.FRACTION))
-                    Game.getInstance().addScoreWhite(getFraction(target));
+                    game.addScoreWhite(getFraction(target));
                 setFieldState(this.whitePos, FieldState.EMPTY);
                 setFieldState(target, FieldState.WHITE);
                 this.whitePos = target;
             } else {
                 if (getFieldState(target).equals(FieldState.FRACTION))
-                    Game.getInstance().addScoreBlack(getFraction(target));
+                    game.addScoreBlack(getFraction(target));
                 setFieldState(this.blackPos, FieldState.EMPTY);
                 setFieldState(target, FieldState.BLACK);
                 this.blackPos = target;
@@ -93,5 +94,21 @@ public class Board {
             case DIAGONAL -> isWhite ? new IntVector2(1, -1) : new IntVector2(-1, 1);
         });
         return pos;
+    }
+
+    public Field[][] getGrid() {
+        return this.grid;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                sb.append(this.grid[i][j].getState().toString());
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

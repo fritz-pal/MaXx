@@ -1,5 +1,6 @@
 package de.hhn.maXx.frontend;
 
+import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.Direction;
 
 import javax.swing.*;
@@ -9,16 +10,16 @@ import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 public class JoyStickButton extends JButton {
-    private final MaXxWindow window;
+    private final JPanel panel;
     private final Direction direction;
     Image image;
-    private int x;
-    private int y;
+    Game game;
     private boolean hovering = false;
     private boolean pressed = false;
 
-    public JoyStickButton(MaXxWindow window, Direction direction) {
-        this.window = window;
+    public JoyStickButton(Direction direction, JPanel panel, Game game) {
+        this.game = game;
+        this.panel = panel;
         this.direction = direction;
 
         //button settings
@@ -31,49 +32,33 @@ public class JoyStickButton extends JButton {
         this.addMouseListener(mouseListener());
 
         image = new ImageIcon("src/main/resources/" + direction.toString().toLowerCase() + ".png").getImage();
-        this.directionSettings();
-        this.setBounds(x, y, 40, 40);
-        window.getContentPane().add(this);
-    }
-
-
-    private void directionSettings() {
-        this.y = window.getHeight() / 2;
-        this.x = window.getWidth() / 6;
-        switch (direction) {
-            case UP -> {
-                x -= 50;
-                y -= 50;
-            }
-            case DOWN -> {
-                x -= 50;
-                y += 50;
-            }
-            case LEFT -> x -= 100;
-            case DIAGONAL -> x -= 50;
-        }
+        panel.add(this);
     }
 
     //called when the window is resized
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        directionSettings();
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(new Color(114, 137, 218));
+        if(pressed) g2d.setColor(new Color(114, 137, 218, 100));
+        else g2d.setColor(new Color(114, 137, 218, 200));
         if (hovering) {
-            g2d.fill(new RoundRectangle2D.Double(-1, -1, getWidth(), getHeight(), 25, 25));
+            g2d.fill(new RoundRectangle2D.Double(-1, -1, getWidth(), getHeight(), 50, 50));
         } else {
-            g2d.fill(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, 50, 50));
+            g2d.fill(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, 100, 100));
         }
-        g2d.drawImage(image, 0, 0, 40, 40, null);
-        this.setBounds(x, y + (pressed ? 2 : 0), 40, 40);
+        if(direction != Direction.DIAGONAL) g2d.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        else{
+            g2d.drawImage(new ImageIcon("src/main/resources/diagonal_" + (game.isWhitesTurn() ? "white" : "black") + ".png").getImage(), 0, 0, getWidth(), getHeight(), null);
+
+        }
     }
 
     private MouseListener mouseListener() {
         return new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                game.move(direction);
             }
 
             @Override

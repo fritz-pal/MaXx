@@ -1,6 +1,8 @@
 package de.hhn.maXx.game;
 
+import de.hhn.maXx.frontend.MaXxWindow;
 import de.hhn.maXx.stateMachine.StateManager;
+import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.Fraction;
 import de.hhn.maXx.util.GameStatus;
 
@@ -12,34 +14,20 @@ import de.hhn.maXx.util.GameStatus;
  */
 
 public class Game {
-    private static Game instance = null;
-    private Board board;
-    private StateManager stateManager;
+    private final MaXxWindow window;
+    private final Board board;
+    private final StateManager stateManager;
     private Fraction scoreW;
     private Fraction scoreB;
+    private boolean whitesTurn = true;
 
-    private Game() {
-        init();
-    }
-    
-    private void init(){
-        this.board = new Board();
+    public Game() {
+        window = new MaXxWindow(this);
+        this.board = new Board(this);
         this.scoreW = new Fraction(0, 1);
         this.scoreB = new Fraction(0, 1);
-        this.stateManager = new StateManager();
-    }
-
-    public static Game getInstance() {
-        if (instance == null) {
-            throw new NullPointerException();
-        }
-        return instance;
-    }
-
-    public static void startNewInstance() {
-        if (instance == null)
-            instance = new Game();
-        instance.init();
+        this.stateManager = new StateManager(this);
+        window.update(board);
     }
 
     public Fraction getScoreW() {
@@ -50,7 +38,7 @@ public class Game {
     public Fraction getScoreB() {
         return this.scoreB;
     }
-    
+
 
     public Board getBoard() {
         return this.board;
@@ -70,8 +58,18 @@ public class Game {
     }
 
     public GameStatus continueGame() {
-        ConsoleGame.clearConsole();
-        ConsoleGame.paint();
         return this.stateManager.turn();
+    }
+
+    public void move(Direction direction) {
+        System.out.println("Move: " + direction);
+        if (board.movePlayer(whitesTurn, direction)) {
+            whitesTurn = !whitesTurn;
+            window.update(board);
+        }
+    }
+
+    public boolean isWhitesTurn() {
+        return whitesTurn;
     }
 }

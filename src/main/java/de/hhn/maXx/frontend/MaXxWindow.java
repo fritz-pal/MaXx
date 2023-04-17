@@ -1,5 +1,8 @@
 package de.hhn.maXx.frontend;
 
+import de.hhn.maXx.game.Board;
+import de.hhn.maXx.game.Field;
+import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.Direction;
 
 import javax.swing.*;
@@ -7,38 +10,72 @@ import java.awt.*;
 
 public class MaXxWindow extends JFrame {
     MaXxButton[][] field = new MaXxButton[8][8];
+    JPanel fieldPanel = new JPanel();
+    JoyStickButton diagonalButton;
+    JPanel joystickPanel = new JPanel();
+    private final Game game;
 
-    public MaXxWindow() {
+    public MaXxWindow(Game game) {
+        this.game = game;
         //window settings
-        setTitle("MaXGuI");
-        setSize(1000, 800);
-        setPreferredSize(new Dimension(1000, 800));
-        pack();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(null);
-        setResizable(true);
-        setIconImage(new ImageIcon("src/main/resources/icon.png").getImage());
-        setLocationRelativeTo(null);
-        getContentPane().setBackground(new Color(0x29, 0x2B, 0x2F));
+        this.setTitle("MaXGuI");
+        this.setSize(1116, 839);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLayout(null);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(new Color(0x29, 0x2B, 0x2F));
+
+        //field panel
+        fieldPanel.setBounds(0, 0, 800, 800);
+        fieldPanel.setLayout(new GridLayout(8, 8));
+        fieldPanel.setBackground(new Color(0x29, 0x2B, 0x2F));
+        this.add(fieldPanel);
+
+        //joystick panel
+        joystickPanel.setBounds(850, 300, 200, 200);
+        joystickPanel.setLayout(new GridLayout(3, 3));
+        joystickPanel.setBackground(new Color(0x29, 0x2B, 0x2F));
+        this.add(joystickPanel);
+
+        //joystick buttons
+        joystickPanel.add(getEmptyPanel(), 0);
+        new JoyStickButton(Direction.UP, joystickPanel, game);
+        joystickPanel.add(getEmptyPanel());
+        new JoyStickButton(Direction.LEFT, joystickPanel, game);
+        diagonalButton = new JoyStickButton(Direction.DIAGONAL, joystickPanel, game);
+        new JoyStickButton(Direction.RIGHT, joystickPanel, game);
+        joystickPanel.add(getEmptyPanel());
+        new JoyStickButton(Direction.DOWN, joystickPanel, game);
 
         //field buttons
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                field[i][j] = new MaXxButton(this, i, j);
+                field[j][i] = new MaXxButton(fieldPanel, j, i);
             }
         }
-
-        //joystick buttons
-        JoyStickButton left = new JoyStickButton(this, Direction.LEFT);
-        JoyStickButton right = new JoyStickButton(this, Direction.RIGHT);
-        JoyStickButton down = new JoyStickButton(this, Direction.DOWN);
-        JoyStickButton up = new JoyStickButton(this, Direction.UP);
-        JoyStickButton diagonal = new JoyStickButton(this, Direction.DIAGONAL);
+        this.setVisible(true);
     }
 
     //called when the window is resized
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+    }
+
+    public void update(Board board) {
+        Field[][] grid = board.getGrid();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                field[i][j].update(grid[i][j]);
+            }
+        }
+        diagonalButton.repaint();
+    }
+
+    private JPanel getEmptyPanel() {
+        JPanel emptyPanel = new JPanel();
+        emptyPanel.setBackground(new Color(0x29, 0x2B, 0x2F));
+        return emptyPanel;
     }
 }
