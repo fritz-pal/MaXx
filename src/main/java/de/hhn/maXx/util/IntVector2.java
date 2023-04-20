@@ -20,6 +20,10 @@ public class IntVector2 {
         return new IntVector2(this.x + other.x, this.y + other.y);
     }
 
+    public IntVector2 subtract(IntVector2 other) {
+        return new IntVector2(this.x - other.x, this.y - other.y);
+    }
+
     public boolean equals(IntVector2 vector2) {
         return vector2.x == this.x && vector2.y == this.y;
     }
