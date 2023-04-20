@@ -1,10 +1,10 @@
 package de.hhn.maXx.frontend;
 
-import de.hhn.maXx.game.Board;
 import de.hhn.maXx.game.Field;
 import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.IntVector2;
+import de.hhn.maXx.util.SoundType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,37 +64,23 @@ public class MaXxWindow extends JFrame {
             }
         }
         this.setVisible(true);
-        this.displayWin(true);
     }
 
-    public void displayWin (boolean player){
+    public void displayWin(boolean player) {
+        Sound.play(SoundType.WIN);
+
         fieldPanel.setEnabled(false);
         JLabel notification = new JLabel();
 
 
-        if(player == true){
-            //White
-            JInternalFrame whiteWin = new JInternalFrame("Winner");
-            whiteWin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            notification.setText("White player won the game!");
-            whiteWin.add(notification);
-            whiteWin.setBounds(500,500,150, 150);
-            this.add(whiteWin);
-            whiteWin.setVisible(true);
+        JInternalFrame whiteWin = new JInternalFrame("Winner");
+        whiteWin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        notification.setText((player ? "White" : "Black") + " player won the game!");
+        whiteWin.add(notification);
+        whiteWin.setBounds(500, 500, 150, 150);
+        this.add(whiteWin);
+        whiteWin.setVisible(true);
 
-        } else {
-            //Black
-            JInternalFrame blackWin = new JInternalFrame("Winner");
-            blackWin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            notification.setText("Black player won the game!");
-            blackWin.add(notification);
-            blackWin.setVisible(true);
-            this.add(blackWin);
-
-
-        }
-
-        // TODO
 
     }
 

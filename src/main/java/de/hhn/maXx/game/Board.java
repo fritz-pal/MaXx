@@ -1,9 +1,7 @@
 package de.hhn.maXx.game;
 
-import de.hhn.maXx.util.Direction;
-import de.hhn.maXx.util.FieldState;
-import de.hhn.maXx.util.Fraction;
-import de.hhn.maXx.util.IntVector2;
+import de.hhn.maXx.frontend.Sound;
+import de.hhn.maXx.util.*;
 
 import java.util.stream.IntStream;
 
@@ -30,6 +28,10 @@ public class Board {
         setFieldState(this.blackPos, FieldState.BLACK);
     }
 
+    private static boolean posOutOfBounds(IntVector2 pos) {
+        return pos.x > 7 || pos.x < 0 || pos.y > 7 || pos.y < 0;
+    }
+
     public FieldState getFieldState(IntVector2 pos) {
         return this.grid[pos.x][pos.y].getState();
     }
@@ -48,9 +50,9 @@ public class Board {
 
     private void fillField() {
         IntStream.range(0, 8).forEach(
-            x -> IntStream.range(0, 8).forEach(
-                y -> this.grid[x][y] = new Field()
-            )
+                x -> IntStream.range(0, 8).forEach(
+                        y -> this.grid[x][y] = new Field()
+                )
         );
     }
 
@@ -58,13 +60,12 @@ public class Board {
         return !posOutOfBounds(target) && !getFieldState(target).equals(FieldState.BLACK) && !getFieldState(target).equals(FieldState.WHITE);
     }
 
-    private static boolean posOutOfBounds(IntVector2 pos) {
-        return pos.x > 7 || pos.x < 0 || pos.y > 7 || pos.y < 0;
-    }
-
     public boolean movePlayer(boolean isWhite, Direction direction) {
         IntVector2 target = getNewCoords(isWhite, direction);
         if (movePossible(target)) {
+            if (getFieldState(target).equals(FieldState.FRACTION))
+                Sound.play(SoundType.CAPTURE);
+            else Sound.play(SoundType.MOVE);
             if (isWhite) {
                 if (getFieldState(target).equals(FieldState.FRACTION))
                     game.addScoreWhite(getFraction(target));

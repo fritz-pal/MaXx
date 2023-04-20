@@ -1,10 +1,8 @@
 package de.hhn.maXx.game;
 
 import de.hhn.maXx.frontend.MaXxWindow;
-import de.hhn.maXx.util.Direction;
-import de.hhn.maXx.util.Fraction;
-import de.hhn.maXx.util.GameStatus;
-import de.hhn.maXx.util.IntVector2;
+import de.hhn.maXx.frontend.Sound;
+import de.hhn.maXx.util.*;
 
 /**
  * Klasse zum Managen des Spiels
@@ -64,6 +62,8 @@ public class Game {
         } else if ((dif.equals(new IntVector2(1, -1)) && !whitesTurn)
                 || (dif.equals(new IntVector2(-1, 1)) && whitesTurn)) {
             move(Direction.DIAGONAL);
+        }else{
+            Sound.play(SoundType.INVALIDMOVE);
         }
     }
 
@@ -72,12 +72,15 @@ public class Game {
         if (board.movePlayer(whitesTurn, direction)) {
             whitesTurn = !whitesTurn;
             window.update();
+        }else{
+            Sound.play(SoundType.INVALIDMOVE);
         }
         if (gameDone()) {
             // TODO call finishedscreen
             // TODO lock moving when gamestatus != Continue
         }
-        // Score console ausgabe zum Testen: System.out.println("White "+ scoreW.intValue() + " black "+ scoreB.intValue() + " " + gameStatus);
+        // Score console ausgabe zum Testen:
+        System.out.println("White "+ scoreW.intValue() + " black "+ scoreB.intValue() + " " + gameStatus);
     }
 
     public boolean isWhitesTurn() {

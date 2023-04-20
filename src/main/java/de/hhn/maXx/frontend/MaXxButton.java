@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 
 public class MaXxButton extends JButton {
@@ -20,6 +19,7 @@ public class MaXxButton extends JButton {
     private final JLabel den;
     private final Game game;
     boolean isDark;
+    private boolean hovering = false;
     private FieldState state = FieldState.FRACTION;
 
     public MaXxButton(Game game, JPanel panel, IntVector2 pos) {
@@ -111,17 +111,19 @@ public class MaXxButton extends JButton {
     private MouseAdapter mouseListener() {
         return new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                game.buttonClicked(pos);
+            public void mouseReleased(MouseEvent e) {
+                if (hovering) game.buttonClicked(pos);
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                hovering = true;
                 setBorderPainted(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+                hovering = false;
                 setBorderPainted(false);
             }
         };
