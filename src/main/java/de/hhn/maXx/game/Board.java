@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 
 public class Board {
     private final Field[][] grid;
-    Game game;
+    private final Game game;
     private IntVector2 whitePos, blackPos;
 
     public Board(Game game) {
@@ -110,5 +110,9 @@ public class Board {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public IntVector2 getPlayerPos(boolean isWhite) {
+        return isWhite ? this.whitePos : this.blackPos;
     }
 }

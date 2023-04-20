@@ -4,6 +4,7 @@ import de.hhn.maXx.game.Board;
 import de.hhn.maXx.game.Field;
 import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.Direction;
+import de.hhn.maXx.util.IntVector2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,7 @@ public class MaXxWindow extends JFrame {
         //window settings
         this.setTitle("MaXGuI");
         this.setSize(1116, 839);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -51,7 +52,7 @@ public class MaXxWindow extends JFrame {
         //field buttons
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                field[j][i] = new MaXxButton(game, fieldPanel, j, i);
+                field[j][i] = new MaXxButton(game, fieldPanel, new IntVector2(j, i));
             }
         }
         this.setVisible(true);
@@ -84,8 +85,8 @@ public class MaXxWindow extends JFrame {
 
     }
 
-    public void update(Board board) {
-        Field[][] grid = board.getGrid();
+    public void update() {
+        Field[][] grid = game.getBoard().getGrid();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 field[i][j].update(grid[i][j]);

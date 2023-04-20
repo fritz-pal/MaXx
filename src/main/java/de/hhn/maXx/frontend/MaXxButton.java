@@ -4,6 +4,7 @@ import de.hhn.maXx.game.Field;
 import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
+import de.hhn.maXx.util.IntVector2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,19 +15,17 @@ import java.awt.geom.Ellipse2D;
 
 public class MaXxButton extends JButton {
     public static final int BUTTON_SIZE = 800 / 8;
-    private final int x;
-    private final int y;
+    private final IntVector2 pos;
     private final JLabel nom;
     private final JLabel den;
     private final Game game;
     boolean isDark;
     private FieldState state = FieldState.FRACTION;
 
-    public MaXxButton(Game game, JPanel panel, int x, int y) {
+    public MaXxButton(Game game, JPanel panel, IntVector2 pos) {
         this.game = game;
-        this.x = x;
-        this.y = y;
-        isDark = (x + y) % 2 == 0;
+        this.pos = pos;
+        isDark = (pos.x + pos.y) % 2 == 0;
 
         //button settings
         this.setBorderPainted(false);
@@ -109,11 +108,11 @@ public class MaXxButton extends JButton {
         repaint();
     }
 
-    private MouseListener mouseListener() {
+    private MouseAdapter mouseListener() {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO
+                game.buttonClicked(pos);
             }
 
             @Override
