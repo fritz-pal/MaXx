@@ -18,6 +18,7 @@ public class Game {
     private Fraction scoreW;
     private Fraction scoreB;
     private boolean whitesTurn = true;
+    private GameStatus gameStatus = GameStatus.CONTINUE;
 
     public Game() {
         window = new MaXxWindow(this);
@@ -31,11 +32,9 @@ public class Game {
         return this.scoreW;
     }
 
-
     public Fraction getScoreB() {
         return this.scoreB;
     }
-
 
     public Board getBoard() {
         return this.board;
@@ -56,9 +55,24 @@ public class Game {
             whitesTurn = !whitesTurn;
             window.update();
         }
+        if(gameDone()){
+            //call finishedscreen
+        }
     }
 
     public boolean isWhitesTurn() {
         return whitesTurn;
+    }
+
+    public boolean gameDone() {
+        if (scoreW.doubleValue() > 53d) {
+            gameStatus = GameStatus.WHITE_WIN;
+            return true;
+        }
+        if (scoreB.doubleValue() > 53d) {
+            gameStatus = GameStatus.BLACK_WIN;
+            return true;
+        }
+        return false;
     }
 }
