@@ -7,10 +7,10 @@ import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.IntVector2;
 
 /**
- * Klasse zum Managen des Spiels (Singleton)
+ * Klasse zum Managen des Spiels
  *
- * @author Dennis Mayer, Nico Vogel, Henri Staudenrausch
- * @version 1, 19.12.22
+ * @author Lukas Vier, Dennis Mayer, Nico Vogel, Henri Staudenrausch
+ * @version 2, 20.04.23
  */
 
 public class Game {
@@ -61,7 +61,8 @@ public class Game {
             move(Direction.LEFT);
         } else if (dif.equals(new IntVector2(-1, 0))) {
             move(Direction.RIGHT);
-        } else if ((dif.equals(new IntVector2(1, -1)) && !whitesTurn) || (dif.equals(new IntVector2(-1, 1)) && whitesTurn)) {
+        } else if ((dif.equals(new IntVector2(1, -1)) && !whitesTurn)
+                || (dif.equals(new IntVector2(-1, 1)) && whitesTurn)) {
             move(Direction.DIAGONAL);
         }
     }
@@ -72,21 +73,23 @@ public class Game {
             whitesTurn = !whitesTurn;
             window.update();
         }
-        if(gameDone()){
-            //call finishedscreen
+        if (gameDone()) {
+            // TODO call finishedscreen
+            // TODO lock moving when gamestatus != Continue
         }
+        // Score console ausgabe zum Testen: System.out.println("White "+ scoreW.intValue() + " black "+ scoreB.intValue() + " " + gameStatus);
     }
 
     public boolean isWhitesTurn() {
         return whitesTurn;
     }
 
+    // check scores above winning value, set gamestate for locking moves
     public boolean gameDone() {
         if (scoreW.doubleValue() > 53d) {
             gameStatus = GameStatus.WHITE_WIN;
             return true;
-        }
-        if (scoreB.doubleValue() > 53d) {
+        } else if (scoreB.doubleValue() > 53d) {
             gameStatus = GameStatus.BLACK_WIN;
             return true;
         }
