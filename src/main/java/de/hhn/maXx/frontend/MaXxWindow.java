@@ -57,6 +57,11 @@ public class MaXxWindow extends JFrame {
         this.setVisible(true);
     }
 
+    public JInternalFrame winScreen (Boolean player){
+        // TODO
+        return new JInternalFrame("Winner");
+    }
+
     public void update(Board board) {
         Field[][] grid = board.getGrid();
         for (int i = 0; i < 8; i++) {
