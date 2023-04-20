@@ -56,6 +56,7 @@ public class MaXxWindow extends JFrame {
             }
         }
         this.setVisible(true);
+        this.displayWin(true);
     }
 
     public void displayWin (boolean player){
@@ -69,6 +70,8 @@ public class MaXxWindow extends JFrame {
             whiteWin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             notification.setText("White player won the game!");
             whiteWin.add(notification);
+            whiteWin.setBounds(500,500,150, 150);
+            this.add(whiteWin);
             whiteWin.setVisible(true);
 
         } else {
@@ -78,6 +81,8 @@ public class MaXxWindow extends JFrame {
             notification.setText("Black player won the game!");
             blackWin.add(notification);
             blackWin.setVisible(true);
+            this.add(blackWin);
+
 
         }
 
