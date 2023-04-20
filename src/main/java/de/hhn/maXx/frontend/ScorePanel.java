@@ -11,7 +11,7 @@ public class ScorePanel extends JPanel {
     public ScorePanel(Game game, boolean scoreOfWhite) {
         this.game = game;
         this.scoreOfWhite = scoreOfWhite;
-        setBounds(800, 100 + (scoreOfWhite?0:75), 300, 50);
+        setBounds(800, 100 + (scoreOfWhite?0:75), 301, 50);
         repaint();
     }
 
