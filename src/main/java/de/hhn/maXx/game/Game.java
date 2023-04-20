@@ -61,7 +61,8 @@ public class Game {
             move(Direction.LEFT);
         } else if (dif.equals(new IntVector2(-1, 0))) {
             move(Direction.RIGHT);
-        } else if ((dif.equals(new IntVector2(1, -1)) && !whitesTurn) || (dif.equals(new IntVector2(-1, 1)) && whitesTurn)) {
+        } else if ((dif.equals(new IntVector2(1, -1)) && !whitesTurn)
+                || (dif.equals(new IntVector2(-1, 1)) && whitesTurn)) {
             move(Direction.DIAGONAL);
         }
     }
@@ -72,9 +73,9 @@ public class Game {
             whitesTurn = !whitesTurn;
             window.update();
         }
-        if(gameDone()){
-            //TODO call finishedscreen
-            //TODO lock moving when gamestatus != Continue
+        if (gameDone()) {
+            // TODO call finishedscreen
+            // TODO lock moving when gamestatus != Continue
         }
     }
 
@@ -82,13 +83,12 @@ public class Game {
         return whitesTurn;
     }
 
-    //check scores above winning value, set gamestate for locking moves
+    // check scores above winning value, set gamestate for locking moves
     public boolean gameDone() {
         if (scoreW.doubleValue() > 53d) {
             gameStatus = GameStatus.WHITE_WIN;
             return true;
-        }
-        if (scoreB.doubleValue() > 53d) {
+        } else if (scoreB.doubleValue() > 53d) {
             gameStatus = GameStatus.BLACK_WIN;
             return true;
         }
