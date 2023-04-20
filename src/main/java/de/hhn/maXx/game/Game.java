@@ -7,10 +7,10 @@ import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.IntVector2;
 
 /**
- * Klasse zum Managen des Spiels (Singleton)
+ * Klasse zum Managen des Spiels
  *
- * @author Dennis Mayer, Nico Vogel, Henri Staudenrausch
- * @version 1, 19.12.22
+ * @author Lukas Vier, Dennis Mayer, Nico Vogel, Henri Staudenrausch
+ * @version 2, 20.04.23
  */
 
 public class Game {
@@ -73,7 +73,8 @@ public class Game {
             window.update();
         }
         if(gameDone()){
-            //call finishedscreen
+            //TODO call finishedscreen
+            //TODO lock moving when gamestatus != Continue
         }
     }
 
@@ -81,6 +82,7 @@ public class Game {
         return whitesTurn;
     }
 
+    //check scores above winning value, set gamestate for locking moves
     public boolean gameDone() {
         if (scoreW.doubleValue() > 53d) {
             gameStatus = GameStatus.WHITE_WIN;
