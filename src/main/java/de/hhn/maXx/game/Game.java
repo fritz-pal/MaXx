@@ -24,7 +24,7 @@ public class Game {
         this.board = new Board(this);
         this.scoreW = new Fraction(0, 1);
         this.scoreB = new Fraction(0, 1);
-        window.update(board);
+        window.update();
     }
 
     public Fraction getScoreW() {
@@ -54,7 +54,7 @@ public class Game {
         System.out.println("Move: " + direction);
         if (board.movePlayer(whitesTurn, direction)) {
             whitesTurn = !whitesTurn;
-            window.update(board);
+            window.update();
         }
     }
 
