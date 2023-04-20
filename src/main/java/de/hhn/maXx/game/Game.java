@@ -77,6 +77,7 @@ public class Game {
             // TODO call finishedscreen
             // TODO lock moving when gamestatus != Continue
         }
+        // Score console ausgabe zum Testen: System.out.println("White "+ scoreW.intValue() + " black "+ scoreB.intValue() + " " + gameStatus);
     }
 
     public boolean isWhitesTurn() {
