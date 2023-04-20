@@ -4,6 +4,7 @@ import de.hhn.maXx.game.Board;
 import de.hhn.maXx.game.Field;
 import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.Direction;
+import de.hhn.maXx.util.IntVector2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,7 @@ public class MaXxWindow extends JFrame {
         //field buttons
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                field[j][i] = new MaXxButton(game, fieldPanel, j, i);
+                field[j][i] = new MaXxButton(game, fieldPanel, new IntVector2(j, i));
             }
         }
         this.setVisible(true);
