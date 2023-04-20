@@ -109,11 +109,11 @@ public class MaXxButton extends JButton {
         repaint();
     }
 
-    private MouseListener mouseListener() {
+    private MouseAdapter mouseListener() {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO
+                game.buttonClicked(x, y);
             }
 
             @Override

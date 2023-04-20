@@ -20,7 +20,7 @@ public class MaXxWindow extends JFrame {
         //window settings
         this.setTitle("MaXGuI");
         this.setSize(1116, 839);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -62,8 +62,8 @@ public class MaXxWindow extends JFrame {
 
     }
 
-    public void update(Board board) {
-        Field[][] grid = board.getGrid();
+    public void update() {
+        Field[][] grid = game.getBoard().getGrid();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 field[i][j].update(grid[i][j]);
