@@ -14,6 +14,8 @@ public class MaXxWindow extends JFrame {
     private final JPanel fieldPanel = new JPanel();
     private final JoyStickButton diagonalButton;
     private final JPanel joystickPanel = new JPanel();
+    private final ScorePanel whiteScore;
+    private final ScorePanel blackScore;
     private final Game game;
 
     public MaXxWindow(Game game) {
@@ -32,6 +34,12 @@ public class MaXxWindow extends JFrame {
         fieldPanel.setLayout(new GridLayout(8, 8));
         fieldPanel.setBackground(new Color(0x29, 0x2B, 0x2F));
         this.add(fieldPanel);
+
+        //progress bars
+        whiteScore = new ScorePanel(game, true);
+        blackScore = new ScorePanel(game, false);
+        this.add(whiteScore);
+        this.add(blackScore);
 
         //joystick panel
         joystickPanel.setBounds(850, 500, 200, 200);
@@ -97,6 +105,8 @@ public class MaXxWindow extends JFrame {
                 field[i][j].update(grid[i][j]);
             }
         }
+        whiteScore.updateScore();
+        blackScore.updateScore();
         diagonalButton.repaint();
     }
 

@@ -6,30 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScorePanel extends JPanel {
-    private final JLabel numerator;
-    private final JLabel denominator;
     private final boolean scoreOfWhite;
     Game game;
     public ScorePanel(Game game, boolean scoreOfWhite) {
         this.game = game;
         this.scoreOfWhite = scoreOfWhite;
-        setBounds(850, 100, 200, 50);
-        setLayout(new BorderLayout());
-        setBackground(new Color(49, 49, 49));
-        numerator = new JLabel();
-        denominator = new JLabel();
-        add(numerator, BorderLayout.PAGE_START);
-        add(denominator, BorderLayout.PAGE_END);
+        setBounds(800, 100 + (scoreOfWhite?0:75), 300, 50);
         repaint();
     }
 
     public void updateScore() {
-        numerator.setText(String.valueOf(
-                (scoreOfWhite?game.getScoreW():game.getScoreB()).getNumerator()
-        ));
-        denominator.setText(String.valueOf(
-                (scoreOfWhite?game.getScoreW():game.getScoreB()).getDenominator()
-        ));
         repaint();
     }
 
@@ -37,11 +23,19 @@ public class ScorePanel extends JPanel {
     public void paint(Graphics g) {
         g.setColor(new Color(28, 90, 90));
         for (int i = 0;
-             i < 200 / 53. * (scoreOfWhite?game.getScoreW():game.getScoreB()).doubleValue();
+             i < Math.max((getWidth()-1) / 53. * (scoreOfWhite?game.getScoreW():game.getScoreB()).doubleValue(), getWidth());
+             i++) {
+            g.drawLine(i, 0, i, 49);
+        }
+        g.setColor(new Color(58, 58, 58));
+        for (int i = (int)((getWidth()-1) / 53. * (scoreOfWhite?game.getScoreW():game.getScoreB()).doubleValue());
+             i < (getWidth()-1);
              i++) {
             g.drawLine(i, 0, i, 49);
         }
         g.setColor(new Color(255, 255, 255));
-        g.drawLine(0, 25, 199, 25);
+        g.drawLine(0, 25, (getWidth()-1), 25);
+        g.drawString(String.valueOf(scoreOfWhite?game.getScoreW().getNumerator():game.getScoreB().getNumerator()),0, 24);
+        g.drawString(String.valueOf(scoreOfWhite?game.getScoreW().getDenominator():game.getScoreB().getDenominator()),0, 36);
     }
 }
