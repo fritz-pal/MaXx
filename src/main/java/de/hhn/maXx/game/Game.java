@@ -3,6 +3,7 @@ package de.hhn.maXx.game;
 import de.hhn.maXx.frontend.MaXxWindow;
 import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.Fraction;
+import de.hhn.maXx.util.GameStatus;
 import de.hhn.maXx.util.IntVector2;
 
 /**
