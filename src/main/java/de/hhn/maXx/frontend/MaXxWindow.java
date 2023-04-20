@@ -57,7 +57,29 @@ public class MaXxWindow extends JFrame {
         this.setVisible(true);
     }
 
-    public void winScreen (boolean player){
+    public void displayWin (boolean player){
+        fieldPanel.setEnabled(false);
+        JLabel notification = new JLabel();
+
+
+        if(player == true){
+            //White
+            JInternalFrame whiteWin = new JInternalFrame("Winner");
+            whiteWin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            notification.setText("White player won the game!");
+            whiteWin.add(notification);
+            whiteWin.setVisible(true);
+
+        } else {
+            //Black
+            JInternalFrame blackWin = new JInternalFrame("Winner");
+            blackWin.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            notification.setText("Black player won the game!");
+            blackWin.add(notification);
+            blackWin.setVisible(true);
+
+        }
+
         // TODO
 
     }
