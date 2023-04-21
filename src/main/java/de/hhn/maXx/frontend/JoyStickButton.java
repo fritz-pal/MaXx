@@ -25,6 +25,7 @@ public class JoyStickButton extends JButton {
         //button settings
         this.setBorderPainted(false);
         this.setFocusPainted(false);
+        this.setFocusable(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
         this.setLayout(null);
@@ -40,8 +41,8 @@ public class JoyStickButton extends JButton {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        if(pressed) g2d.setColor(new Color(114, 137, 218, 100));
-        else g2d.setColor(new Color(114, 137, 218, 200));
+        if(pressed) g2d.setColor(new Color(28, 96, 53));
+        else g2d.setColor(new Color(36, 128, 70));
         if (hovering) {
             g2d.fill(new RoundRectangle2D.Double(-1, -1, getWidth(), getHeight(), 50, 50));
         } else {

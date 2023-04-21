@@ -4,14 +4,14 @@ public enum SoundType {
     MOVE,
     CAPTURE,
     WIN,
-    INVALIDMOVE;
+    INVALID_MOVE;
 
     public String getFileName() {
         return switch (this) {
             case CAPTURE -> "capture.wav";
             case MOVE -> "move.wav";
             case WIN -> "win.wav";
-            case INVALIDMOVE -> "invalidMove.wav";
+            case INVALID_MOVE -> "invalidMove.wav";
         };
     }
 }

@@ -2,13 +2,6 @@ package de.hhn.maXx;
 
 import de.hhn.maXx.frontend.StartScreen;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-
 /**
  * Schreiben Sie ein (textbasiertes) Anwendungsprogramm, welches es Benutzern erlaubt, das 2-Personen Spiel
  * „MaXx“ auf Spielbrettern der Größe 8 × 8 zu spielen. 62 der Spiel-Felder werden bei Spielbeginn mit zufällig

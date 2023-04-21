@@ -17,7 +17,6 @@ public class Game {
     private Fraction scoreW;
     private Fraction scoreB;
     private boolean whitesTurn = true;
-    private GameStatus gameStatus = GameStatus.CONTINUE;
 
     public Game() {
         window = new MaXxWindow(this);
@@ -63,7 +62,7 @@ public class Game {
                 || (dif.equals(new IntVector2(-1, 1)) && whitesTurn)) {
             move(Direction.DIAGONAL);
         }else{
-            Sound.play(SoundType.INVALIDMOVE);
+            Sound.play(SoundType.INVALID_MOVE);
         }
     }
 
@@ -73,29 +72,21 @@ public class Game {
             whitesTurn = !whitesTurn;
             window.update();
         }else{
-            Sound.play(SoundType.INVALIDMOVE);
+            Sound.play(SoundType.INVALID_MOVE);
         }
-        if (gameDone()) {
-            // TODO call finishedscreen
-            // TODO lock moving when gamestatus != Continue
-        }
-        // Score console ausgabe zum Testen:
-        System.out.println("White "+ scoreW.intValue() + " black "+ scoreB.intValue() + " " + gameStatus);
+        gameDone();
     }
 
     public boolean isWhitesTurn() {
         return whitesTurn;
     }
 
-    // check scores above winning value, set gamestate for locking moves
-    public boolean gameDone() {
-        if (scoreW.doubleValue() > 53d) {
-            gameStatus = GameStatus.WHITE_WIN;
-            return true;
-        } else if (scoreB.doubleValue() > 53d) {
-            gameStatus = GameStatus.BLACK_WIN;
-            return true;
+    // check scores above winning value
+    public void gameDone() {
+        if (scoreW.doubleValue() > 53D) {
+            window.displayWin(true);
+        } else if (scoreB.doubleValue() > 53D) {
+            window.displayWin(false);
         }
-        return false;
     }
 }

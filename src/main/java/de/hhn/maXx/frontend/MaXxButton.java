@@ -30,6 +30,7 @@ public class MaXxButton extends JButton {
         //button settings
         this.setBorderPainted(false);
         this.setFocusPainted(false);
+        this.setFocusable(false);
         this.setContentAreaFilled(false);
         this.setOpaque(true);
         this.setLayout(null);
@@ -63,7 +64,7 @@ public class MaXxButton extends JButton {
         if (state == FieldState.FRACTION) {
             //draw a horizontal line
             g.setColor(new Color(0x96, 0x98, 0x9D));
-            ((Graphics2D) g).setStroke(new BasicStroke(3));
+            ((Graphics2D) g).setStroke(new BasicStroke(2));
             g.drawLine(BUTTON_SIZE / 5, BUTTON_SIZE / 2, BUTTON_SIZE / 5 * 4, BUTTON_SIZE / 2);
             nom.setVisible(true);
             den.setVisible(true);
@@ -85,6 +86,7 @@ public class MaXxButton extends JButton {
             g.setColor(Color.BLACK);
             g.fillOval(BUTTON_SIZE / 3, BUTTON_SIZE / 3, BUTTON_SIZE / 3, BUTTON_SIZE / 3);
         }
+        g.dispose();
     }
 
     // creates a label with the given number formatted as a fraction
