@@ -41,14 +41,21 @@ public class MaXxWindow extends JFrame {
         fieldPanel.setBackground(new Color(0x29, 0x2B, 0x2F));
         this.add(fieldPanel);
 
-        //label
+        //labels
         JLabel titleLabel = new JLabel("MaXGuI");
-        titleLabel.setFont(new Font("Arial Black", Font.PLAIN, 40));
+        titleLabel.setFont(new Font("Arial Black", Font.BOLD, 40));
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setVerticalAlignment(JLabel.CENTER);
         titleLabel.setBounds(850, 100, 200, 50);
         this.getContentPane().add(titleLabel, 0);
+
+        JLabel infoLabel = new JLabel("WASD/Arrow keys/Space to move!");
+        infoLabel.setFont(new Font("Arial Black", Font.BOLD, 12));
+        infoLabel.setForeground(Color.WHITE);
+        infoLabel.setHorizontalAlignment(JLabel.CENTER);
+        infoLabel.setBounds(800, 720, 300, 50);
+        this.getContentPane().add(infoLabel, 0);
 
         //progress bars
         whiteLabel.setBounds(850, 265, 200, 50);
@@ -93,7 +100,7 @@ public class MaXxWindow extends JFrame {
     private KeyAdapter keyListener() {
         return new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyReleased(KeyEvent e) {
                 switch (e.getKeyCode()) {
                     case 37, 65 -> game.move(Direction.LEFT);
                     case 38, 87 -> game.move(Direction.UP);
