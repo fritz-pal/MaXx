@@ -9,7 +9,7 @@ import java.awt.*;
  * Die Klasse ScorePannel zeigt die aktuellen Scores der Spieler,
  * sowohl als Bruch, als auch als "pogress bar" auf dem MaXx Window aus.
  * 
- * @author Nico Vogel
+ * @author Nico Vogel 215998
  * @version 2, 27.04.23
  */
 public class ScorePanel extends JPanel {

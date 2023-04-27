@@ -8,7 +8,7 @@ import java.io.*;
  * Die Klasse MaXxButton implementiert das speichern un auslesen von
  * Spielständen in Dateien
  *
- * @author Nico Vogel
+ * @author Nico Vogel 215998
  * @version 1, 27.04.23
  */
 

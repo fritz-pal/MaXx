@@ -17,6 +17,7 @@ public final class MyIO {
     private MyIO() {
     }
 
+    // Erfragt einen String vom Nutzer über die Knosole
     public static String promptAndRead(String prompt) {
         try {
             System.out.println(prompt);
@@ -26,6 +27,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen Integer Wert vom Nutzer über die Knosole
     public static int readInt(String prompt) {
         try {
             return Integer.parseInt(promptAndRead(prompt).trim());
@@ -34,6 +36,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen Double Wert vom Nutzer über die Knosole
     public static double readDouble(String prompt) {
         try {
             return Double.parseDouble(promptAndRead(prompt).trim());
@@ -42,6 +45,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen Long Wert vom Nutzer über die Knosole
     public static long readLong(String prompt) {
         try {
             return Long.parseLong(promptAndRead(prompt).trim());
@@ -50,6 +54,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen Float Wert vom Nutzer über die Knosole
     public static float readFloat(String prompt) {
         try {
             return Float.parseFloat(promptAndRead(prompt).trim());
@@ -58,6 +63,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen Short Wert vom Nutzer über die Knosole
     public static short readShort(String prompt) {
         try {
             return Short.parseShort(promptAndRead(prompt).trim());
@@ -66,6 +72,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen Byte Wert vom Nutzer über die Knosole
     public static byte readByte(String prompt) {
         try {
             return Byte.parseByte(promptAndRead(prompt).trim());
@@ -74,6 +81,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen BigInteger Wert vom Nutzer über die Knosole
     public static BigInteger readBigInteger(String prompt) {
         try {
             return new BigInteger(promptAndRead(prompt).trim());
@@ -82,6 +90,7 @@ public final class MyIO {
         }
     }
 
+    // Erfragt einen BigDecimal Wert vom Nutzer über die Knosole
     public static BigDecimal readBigDecimal(String prompt) {
         try {
             return new BigDecimal(promptAndRead(prompt).trim());
@@ -90,10 +99,12 @@ public final class MyIO {
         }
     }
 
+    // Ausgabe über die Konsole in einer Zeile ohne Umbruch
     public static void write(Object o) {
         System.out.print(o);
     }
 
+    // Ausgabe über die Konsole in einer Zeile mit Umbruch
     public static void writeln(Object o) {
         System.out.println(o);
     }

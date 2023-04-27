@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  * Die Klasse Board beinhaltet alle Methoden, um Spieler zu bewegen,
  * Spielfelder zu befüllen und Informationen zum Spielbrett zu erlangen.
  *
- * @author Lukas Vier, Henri Staudenrausch, Nico Vogel, Dennis Mayer
+ * @author Lukas Vier, Henri Staudenrausch, Nico Vogel 215998, Dennis Mayer
  * @version 3, 27.04.23
  */
 

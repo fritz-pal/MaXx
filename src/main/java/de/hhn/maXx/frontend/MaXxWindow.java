@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
  * Es stellt die Parameter des Spieles grafisch dar
  * und bietet die Inputmöglichkeiten für die Spieler an.
  *
- * @author Henri Staudenrausch, Nico Vogel, Lukas Vier
+ * @author Henri Staudenrausch, Nico Vogel 215998, Lukas Vier
  * @version 2, 27.04.23
  */
 public class MaXxWindow extends JFrame {

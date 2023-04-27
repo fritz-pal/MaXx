@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * Klasse zum Managen des Spiels
  *
- * @author Lukas Vier, Dennis Mayer, Nico Vogel, Henri Staudenrausch
+ * @author Lukas Vier, Dennis Mayer, Nico Vogel 215998, Henri Staudenrausch
  * @version 3, 27.04.23
  */
 

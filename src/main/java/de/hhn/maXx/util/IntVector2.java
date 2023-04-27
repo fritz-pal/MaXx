@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Eine Klasse die einen durch Ganzzahlen definierten Punkt repräsentiert.
  *
- * @author Nico Vogel
+ * @author Nico Vogel 215998
  * @version 1, 20.12.2022
  */
 
