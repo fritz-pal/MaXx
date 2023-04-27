@@ -155,7 +155,7 @@ public class MaXxWindow extends JFrame {
         fileChooser.setDialogTitle("Save your game");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Serialized", "ser"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("MaXx Save Game", "maxx"));
         int returnValue = fileChooser.showSaveDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             SaveGameHandler.saveGame(fileChooser.getSelectedFile(), game);
