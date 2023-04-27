@@ -1,5 +1,7 @@
 package de.hhn.maXx.util;
 
+import java.io.Serializable;
+
 /**
  * Eine Klasse die einen durch Ganzzahlen definierten Punkt repräsentiert.
  *
@@ -7,7 +9,7 @@ package de.hhn.maXx.util;
  * @version 1, 20.12.2022
  */
 
-public class IntVector2 {
+public class IntVector2 implements Serializable {
     public final int x;
     public final int y;
 
