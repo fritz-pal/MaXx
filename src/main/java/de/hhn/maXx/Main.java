@@ -18,7 +18,7 @@ import de.hhn.maXx.frontend.StartScreen;
  * – Überlegen Sie, wie ein Benutzer das Programm steuern soll und wie die Ausgabe gestaltet wird.
  *
  * @author Henri Staudenrausch 215994, Lukas Vier 215997, Nico Vogel 215998, Nadine Schoch, Dennis Mayer 215964
- * @version 1, 19.12.2022
+ * @version 3, 27.04.2023
  **/
 
 public class Main {
