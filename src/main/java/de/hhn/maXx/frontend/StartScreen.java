@@ -6,6 +6,7 @@ import de.hhn.maXx.util.SaveGameHandler;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.io.IOException;
 
 public class StartScreen extends JFrame {
 
@@ -67,7 +68,13 @@ public class StartScreen extends JFrame {
         fileChooser.setFileFilter(new FileNameExtensionFilter("Serialized", "ser"));
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            SaveGameHandler.loadGame(fileChooser.getSelectedFile());
+            try {
+                SaveGameHandler.loadGame(fileChooser.getSelectedFile());
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "File not found");
+            } catch (ClassNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "Save game is from older version.");
+            }
         }
     }
 }
