@@ -13,7 +13,7 @@ import java.awt.geom.RoundRectangle2D;
  * Die Klasse MaXxButton definiert die Darstellung und Funktionen der JoyStickButtons
  * (zum Bewegen der Spelsteine über das grafische Steuerkreuz)
  *
- * @author Henri Staudenrausch
+ * @author Henri Staudenrausch 215994
  * @version 2, 27.04.23
  */
 public class JoyStickButton extends JButton {

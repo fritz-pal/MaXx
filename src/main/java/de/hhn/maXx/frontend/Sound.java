@@ -11,7 +11,7 @@ import java.io.InputStream;
  * Die Klasse Sound liest die .wav Dateien aus dem
  * Ressourcen directory aus und spielt sie ab.
  *
- * @author Henri Staudenrausch
+ * @author Henri Staudenrausch 215994
  * @version 2, 27.04.23
  */
 public class Sound {

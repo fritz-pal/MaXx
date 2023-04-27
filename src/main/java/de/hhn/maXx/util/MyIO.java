@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Hilfsklasse zum Lesen und Schreiben der Konsole.
  *
- * @author Henri Staudenrausch, Nadine Schoch
+ * @author Henri Staudenrausch 215994, Nadine Schoch
  * @version 3, 12.12.2022
  **/
 public final class MyIO {

@@ -16,7 +16,7 @@ import java.awt.geom.Ellipse2D;
  * Die Klasse MaXxButton definiert die Grafik und die Interaktionen
  * der Nutzer mit den Feldern des Spielbretts.
  *
- * @author Henri Staudenrausch
+ * @author Henri Staudenrausch 215994
  * @version 2, 27.04.23
  */
 

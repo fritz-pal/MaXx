@@ -12,7 +12,7 @@ import java.awt.*;
  * von dem aus ein spiel gestartet werden oder ein vorhandenes Spiel geladen
  * werden kann.
  * 
- * @author Lukas Vier, Henri Staudenrausch, Dennis Mayer
+ * @author Lukas Vier 215997, Henri Staudenrausch 215994, Dennis Mayer 215964
  * @version 2, 27.04.23
  */
 

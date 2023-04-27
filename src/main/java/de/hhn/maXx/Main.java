@@ -17,7 +17,7 @@ import de.hhn.maXx.frontend.StartScreen;
  * Dialogkomponente, etc.) benötigt werden und welche Methoden. (Denken Sie auch an mögliche spätere Erweiterungen des Spiels.)
  * – Überlegen Sie, wie ein Benutzer das Programm steuern soll und wie die Ausgabe gestaltet wird.
  *
- * @author Henri Staudenrausch, Lukas Vier, Nico Vogel 215998, Nadine Schoch, Dennis Mayer
+ * @author Henri Staudenrausch 215994, Lukas Vier 215997, Nico Vogel 215998, Nadine Schoch, Dennis Mayer 215964
  * @version 1, 19.12.2022
  **/
 
