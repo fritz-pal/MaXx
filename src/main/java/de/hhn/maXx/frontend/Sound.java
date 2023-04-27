@@ -1,6 +1,5 @@
 package de.hhn.maXx.frontend;
 
-
 import de.hhn.maXx.util.SoundType;
 
 import javax.sound.sampled.*;
@@ -8,6 +7,13 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Die Klasse Sound liest die .wav Dateien aus dem
+ * Ressourcen directory aus und spielt sie ab.
+ *
+ * @author Henri Staudenrausch
+ * @version 3, 27.04.23
+ */
 public class Sound {
     public static void play(SoundType soundType) {
         String fileName = soundType.getFileName();
