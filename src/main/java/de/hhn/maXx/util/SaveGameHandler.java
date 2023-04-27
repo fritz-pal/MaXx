@@ -21,6 +21,8 @@ public class SaveGameHandler {
         if (!file.exists())
             throw new IOException("File: " + file + " does not exist");
         ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
-        return (Game) stream.readObject();
+        Game game = (Game) stream.readObject();
+        game.makeWindow();
+        return game;
     }
 }
