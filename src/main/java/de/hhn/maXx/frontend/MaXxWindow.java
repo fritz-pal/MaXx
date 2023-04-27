@@ -43,7 +43,7 @@ public class MaXxWindow extends JFrame {
         this.getContentPane().addKeyListener(keyListener());
         this.getContentPane().setFocusable(true);
 
-        //save button
+        // Parameter Speicherknopf
         JButton saveButton = new JButton("Save Game");
         saveButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
         saveButton.setForeground(Color.WHITE);
@@ -53,7 +53,7 @@ public class MaXxWindow extends JFrame {
         saveButton.setBounds(930, 20, 150, 50);
         this.add(saveButton);
 
-        //field panel
+        // Parameter FieldPanel
         JPanel fieldPanel = new JPanel();
         fieldPanel.setBounds(0, 0, 800, 800);
         fieldPanel.setLayout(new GridLayout(8, 8));
@@ -133,7 +133,7 @@ public class MaXxWindow extends JFrame {
         };
     }
 
-    // Anzeigen des "Sieg-Bildschirms"
+    // Anzeigen des "Sieg-Popups"
     public void displayWin(boolean player) {
         Sound.play(SoundType.WIN);
         JOptionPane.showMessageDialog(this, player ? "White won!" : "Black won!");
