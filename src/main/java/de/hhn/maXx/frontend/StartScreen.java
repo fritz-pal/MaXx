@@ -67,11 +67,7 @@ public class StartScreen extends JFrame {
         fileChooser.setFileFilter(new FileNameExtensionFilter("Serialized", "ser"));
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            try {
-                SaveGameHandler.loadGame(fileChooser.getSelectedFile());
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
+            SaveGameHandler.loadGame(fileChooser.getSelectedFile());
         }
     }
 }
