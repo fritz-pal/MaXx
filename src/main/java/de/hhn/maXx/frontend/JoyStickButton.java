@@ -14,7 +14,7 @@ import java.awt.geom.RoundRectangle2D;
  * (zum Bewegen der Spelsteine über das grafische Steuerkreuz)
  *
  * @author Henri Staudenrausch
- * @version 3, 27.04.23
+ * @version 2, 27.04.23
  */
 public class JoyStickButton extends JButton {
     private final Direction direction;

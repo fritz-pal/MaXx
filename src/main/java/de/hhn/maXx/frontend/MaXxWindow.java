@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
  * und bietet die Inputmöglichkeiten für die Spieler an.
  *
  * @author Henri Staudenrausch, Nico Vogel, Lukas Vier
- * @version 3, 27.04.23
+ * @version 2, 27.04.23
  */
 public class MaXxWindow extends JFrame {
     private final MaXxButton[][] field = new MaXxButton[8][8];

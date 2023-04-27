@@ -12,7 +12,7 @@ import java.io.InputStream;
  * Ressourcen directory aus und spielt sie ab.
  *
  * @author Henri Staudenrausch
- * @version 3, 27.04.23
+ * @version 2, 27.04.23
  */
 public class Sound {
     public static void play(SoundType soundType) {

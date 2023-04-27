@@ -18,18 +18,22 @@ public class IntVector2 implements Serializable {
         this.y = y;
     }
 
+    // Vektoren addieren
     public IntVector2 add(IntVector2 other) {
         return new IntVector2(this.x + other.x, this.y + other.y);
     }
 
+    // Vektoren subtrahieren
     public IntVector2 subtract(IntVector2 other) {
         return new IntVector2(this.x - other.x, this.y - other.y);
     }
 
+    // Vektoren auf Gleichheit überprüfen
     public boolean equals(IntVector2 vector2) {
         return vector2.x == this.x && vector2.y == this.y;
     }
 
+    // objekte auf Gleichheit überprüfen
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof IntVector2 vector2) {

@@ -13,7 +13,7 @@ import java.awt.*;
  * werden kann.
  * 
  * @author Lukas Vier, Henri Staudenrausch, Dennis Mayer
- * @version 3, 27.04.23
+ * @version 2, 27.04.23
  */
 
 public class StartScreen extends JFrame {

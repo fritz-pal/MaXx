@@ -10,7 +10,7 @@ import java.awt.*;
  * sowohl als Bruch, als auch als "pogress bar" auf dem MaXx Window aus.
  * 
  * @author Nico Vogel
- * @version 3, 27.04.23
+ * @version 2, 27.04.23
  */
 public class ScorePanel extends JPanel {
     private final boolean scoreOfWhite;

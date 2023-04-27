@@ -17,7 +17,7 @@ import java.awt.geom.Ellipse2D;
  * der Nutzer mit den Feldern des Spielbretts.
  *
  * @author Henri Staudenrausch
- * @version 3, 27.04.23
+ * @version 2, 27.04.23
  */
 
 public class MaXxButton extends JButton {
