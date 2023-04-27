@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
  * Die Klasse Board beinhaltet alle Methoden, um Spieler zu bewegen,
  * Spielfelder zu befüllen und Informationen zum Spielbrett zu erlangen.
  *
- * @author Lukas Vier, Henri Staudenrausch, Nico Vogel
- * @version 2, 19.12.22
+ * @author Lukas Vier, Henri Staudenrausch, Nico Vogel, Dennis Mayer
+ * @version 3, 27.04.23
  */
 
 public class Board {
@@ -28,6 +28,7 @@ public class Board {
         setFieldState(this.blackPos, FieldState.BLACK);
     }
 
+    // kontrolliert ob Zielposition innerhalb des Feldes ist
     private static boolean posOutOfBounds(IntVector2 pos) {
         return pos.x > 7 || pos.x < 0 || pos.y > 7 || pos.y < 0;
     }
@@ -40,6 +41,7 @@ public class Board {
         this.grid[pos.x][pos.y].setState(state);
     }
 
+    // gibt den Bruch eines Feldes zurück
     public Fraction getFraction(IntVector2 pos) {
         if (this.grid[pos.x][pos.y].getState() == FieldState.FRACTION) {
             return this.grid[pos.x][pos.y].getFraction();
@@ -48,24 +50,27 @@ public class Board {
         }
     }
 
+    // füllt das Grid mit Feldern
     private void fillField() {
         IntStream.range(0, 8).forEach(
                 x -> IntStream.range(0, 8).forEach(
-                        y -> this.grid[x][y] = new Field()
-                )
-        );
+                        y -> this.grid[x][y] = new Field()));
     }
 
+    // kontrolliert ob ein Zug möglich ist (auf Feld, nicht belegt)
     private boolean movePossible(IntVector2 target) {
-        return !posOutOfBounds(target) && !getFieldState(target).equals(FieldState.BLACK) && !getFieldState(target).equals(FieldState.WHITE);
+        return !posOutOfBounds(target) && !getFieldState(target).equals(FieldState.BLACK)
+                && !getFieldState(target).equals(FieldState.WHITE);
     }
 
+    // bewegt den Spielstein und fügt den Bruch zu Score hinzu
     public boolean movePlayer(boolean isWhite, Direction direction) {
         IntVector2 target = getNewCoords(isWhite, direction);
         if (movePossible(target)) {
             if (getFieldState(target).equals(FieldState.FRACTION))
                 Sound.play(SoundType.CAPTURE);
-            else Sound.play(SoundType.MOVE);
+            else
+                Sound.play(SoundType.MOVE);
             if (isWhite) {
                 if (getFieldState(target).equals(FieldState.FRACTION))
                     game.addScoreWhite(getFraction(target));
@@ -84,9 +89,9 @@ public class Board {
         return false;
     }
 
+    // gibt, aus Position und Richtung die Koordienaten des Zielfeldes zurück
     private IntVector2 getNewCoords(boolean isWhite, Direction direction) {
         IntVector2 pos = isWhite ? this.whitePos : this.blackPos;
-
         pos = pos.add(switch (direction) {
             case RIGHT -> new IntVector2(1, 0);
             case LEFT -> new IntVector2(-1, 0);

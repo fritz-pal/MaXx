@@ -8,7 +8,7 @@ import de.hhn.maXx.util.*;
  * Klasse zum Managen des Spiels
  *
  * @author Lukas Vier, Dennis Mayer, Nico Vogel, Henri Staudenrausch
- * @version 2, 20.04.23
+ * @version 3, 27.04.23
  */
 
 public class Game {
@@ -47,6 +47,7 @@ public class Game {
         this.scoreW = this.scoreW.add(fraction);
     }
 
+    // erkennen von Knopfdruck auf Steuerkreuz
     public void buttonClicked(IntVector2 pos) {
         IntVector2 playerPos = board.getPlayerPos(whitesTurn);
         IntVector2 dif = playerPos.subtract(pos);
@@ -61,27 +62,29 @@ public class Game {
         } else if ((dif.equals(new IntVector2(1, -1)) && !whitesTurn)
                 || (dif.equals(new IntVector2(-1, 1)) && whitesTurn)) {
             move(Direction.DIAGONAL);
-        }else{
+        } else {
             Sound.play(SoundType.INVALID_MOVE);
         }
     }
 
+    // Bewegt den Spielstein (mit Errorsound und Check nach Sieg)
     public void move(Direction direction) {
         System.out.println("Move: " + direction);
         if (board.movePlayer(whitesTurn, direction)) {
             whitesTurn = !whitesTurn;
             window.update();
-        }else{
+        } else {
             Sound.play(SoundType.INVALID_MOVE);
         }
         gameDone();
     }
 
+    // gibt zurück wer am zug ist
     public boolean isWhitesTurn() {
         return whitesTurn;
     }
 
-    // check scores above winning value
+    // kontrolliert die Scores nach Werten über Siegpunktzahl
     public void gameDone() {
         if (scoreW.doubleValue() > 53D) {
             window.displayWin(true);
