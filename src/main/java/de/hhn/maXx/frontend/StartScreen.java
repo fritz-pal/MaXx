@@ -35,6 +35,7 @@ public class StartScreen extends JFrame {
         this.add(startButton);
 
         // Erstellen des Load Game Buttons
+        // Öffnet FileChooser
 
         JButton loadButton = new JButton("Load Game");
         loadButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
