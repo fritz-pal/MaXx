@@ -13,6 +13,7 @@ public class SaveGameHandler {
             }
             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(newFile));
             stream.writeObject(game);
+            stream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -23,6 +24,7 @@ public class SaveGameHandler {
             if (!file.exists()) return false;
             ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
             Game game = (Game) stream.readObject();
+            stream.close();
             game.makeWindow();
             return true;
         } catch (IOException | ClassNotFoundException e) {
