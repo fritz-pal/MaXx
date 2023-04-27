@@ -3,7 +3,7 @@ package de.hhn.maXx.util;
 /**
  * Ein Enum, der die Richtung einer Bewegung anzeigt.
  *
- * @author Henri Staudenrausch
+ * @author Henri Staudenrausch 215994
  * @version 1, 19.12.22
  */
 public enum Direction {

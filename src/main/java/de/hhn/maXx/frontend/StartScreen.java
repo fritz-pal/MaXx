@@ -7,6 +7,15 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 
+/**
+ * Die Klasse StartScreen beinhaltet die Definition des Startfenster,
+ * von dem aus ein spiel gestartet werden oder ein vorhandenes Spiel geladen
+ * werden kann.
+ * 
+ * @author Lukas Vier 215997, Henri Staudenrausch 215994, Dennis Mayer 215964
+ * @version 2, 27.04.23
+ */
+
 public class StartScreen extends JFrame {
 
     public StartScreen() {
@@ -19,6 +28,7 @@ public class StartScreen extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
+        // label Überschrift
         JLabel titleLabel = new JLabel("MaXGuI");
         titleLabel.setFont(new Font("Arial Black", Font.PLAIN, 24));
         titleLabel.setForeground(Color.WHITE);
@@ -27,6 +37,7 @@ public class StartScreen extends JFrame {
         titleLabel.setBounds(0, 0, 400, 100);
         this.add(titleLabel);
 
+        // neues Spiel Button
         JButton startButton = new JButton("New Game");
         startButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
         startButton.setForeground(Color.WHITE);
@@ -47,6 +58,7 @@ public class StartScreen extends JFrame {
         loadButton.setBounds(140, 100, 120, 50);
         this.add(loadButton);
 
+        // fenster schließen Button
         JButton exitButton = new JButton("Exit");
         exitButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
         exitButton.setForeground(Color.WHITE);

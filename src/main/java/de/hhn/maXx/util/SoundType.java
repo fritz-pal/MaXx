@@ -1,5 +1,11 @@
 package de.hhn.maXx.util;
 
+/**
+ * Ein Enum, der die Namen der Audiodateien anzeigt.
+ *
+ * @author Henri Staudenrausch 215994
+ * @version 1, 27.04.23
+ */
 public enum SoundType {
     MOVE,
     CAPTURE,

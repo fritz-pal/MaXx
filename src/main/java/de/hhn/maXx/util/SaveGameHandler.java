@@ -4,7 +4,16 @@ import de.hhn.maXx.game.Game;
 
 import java.io.*;
 
+/**
+ * Die Klasse MaXxButton implementiert das speichern un auslesen von
+ * Spielständen in Dateien
+ *
+ * @author Nico Vogel 215998
+ * @version 1, 27.04.23
+ */
+
 public class SaveGameHandler {
+    // Methode zum Serialisieren eines Spielstandes in eine Datei
     public static void saveGame(File file, Game game) {
         try {
             File newFile = file;
@@ -13,16 +22,20 @@ public class SaveGameHandler {
             }
             ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(newFile));
             stream.writeObject(game);
+            stream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // Methode zum Derealisieren eines Spielstandes aus einer Datei
     public static boolean loadGame(File file) {
         try {
-            if (!file.exists()) return false;
+            if (!file.exists())
+                return false;
             ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
             Game game = (Game) stream.readObject();
+            stream.close();
             game.makeWindow();
             return true;
         } catch (IOException | ClassNotFoundException e) {

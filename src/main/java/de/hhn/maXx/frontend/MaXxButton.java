@@ -12,6 +12,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 
+/**
+ * Die Klasse MaXxButton definiert die Grafik und die Interaktionen
+ * der Nutzer mit den Feldern des Spielbretts.
+ *
+ * @author Henri Staudenrausch 215994
+ * @version 2, 27.04.23
+ */
+
 public class MaXxButton extends JButton {
     public static final int BUTTON_SIZE = 800 / 8;
     private final IntVector2 pos;
@@ -27,7 +35,7 @@ public class MaXxButton extends JButton {
         this.pos = pos;
         isDark = (pos.x + pos.y) % 2 == 0;
 
-        //button settings
+        // Generelle Einstellungen
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.setFocusable(false);
@@ -36,23 +44,25 @@ public class MaXxButton extends JButton {
         this.setLayout(null);
         this.addMouseListener(mouseListener());
 
-        //nominator label
+        // Label für Zähler
         nom = makeNumberLabel(false);
         this.add(nom);
 
-        //denominator label
+        // Label für Nenner
         den = makeNumberLabel(true);
         this.add(den);
 
         this.setBackground((isDark ? new Color(0x2F, 0x31, 0x36) : new Color(0x36, 0x39, 0x3F)));
 
-        //add button to panel
+        // Hinzufügen des Buttons zum Label
         panel.add(this);
     }
 
+    // Hebt den aktiven Spieler grafisch hervor
     private void drawGradientCircle(Graphics2D g2d) {
-        Color[] colors = {Color.RED, (isDark ? new Color(0x2F, 0x31, 0x36) : new Color(0x36, 0x39, 0x3F))};
-        RadialGradientPaint rgp = new RadialGradientPaint(new Point(50, 50), (float) BUTTON_SIZE / 2, new float[]{0.0f, 0.8f}, colors);
+        Color[] colors = { Color.RED, (isDark ? new Color(0x2F, 0x31, 0x36) : new Color(0x36, 0x39, 0x3F)) };
+        RadialGradientPaint rgp = new RadialGradientPaint(new Point(50, 50), (float) BUTTON_SIZE / 2,
+                new float[] { 0.0f, 0.8f }, colors);
         g2d.setPaint(rgp);
         g2d.fill(new Ellipse2D.Double(5, 5, BUTTON_SIZE - 10, BUTTON_SIZE - 10));
     }
@@ -61,8 +71,9 @@ public class MaXxButton extends JButton {
     public void paint(Graphics g) {
         super.paint(g);
 
+        // Zeichnen der Fractions in die entsprechenden Felder
         if (state == FieldState.FRACTION) {
-            //draw a horizontal line
+            // Zeichnen einer Horizontalen Linie
             g.setColor(new Color(0x96, 0x98, 0x9D));
             ((Graphics2D) g).setStroke(new BasicStroke(2));
             g.drawLine(BUTTON_SIZE / 5, BUTTON_SIZE / 2, BUTTON_SIZE / 5 * 4, BUTTON_SIZE / 2);
@@ -72,6 +83,7 @@ public class MaXxButton extends JButton {
             nom.setVisible(false);
             den.setVisible(false);
         }
+        // Zeichnen der Spieler / Spielsteine auf die entsprechenden Felder
         if (state == FieldState.WHITE) {
             if (game.isWhitesTurn()) {
                 drawGradientCircle((Graphics2D) g);
@@ -89,7 +101,7 @@ public class MaXxButton extends JButton {
         g.dispose();
     }
 
-    // creates a label with the given number formatted as a fraction
+    // Macht ein Label in der der Bruch dargestellt wird
     private JLabel makeNumberLabel(boolean bottom) {
         JLabel num = new JLabel("");
         num.setBounds(0, bottom ? BUTTON_SIZE / 2 + 1 : 0, BUTTON_SIZE, BUTTON_SIZE / 2);
@@ -110,11 +122,13 @@ public class MaXxButton extends JButton {
         repaint();
     }
 
+    // Maus Adapter wür Interaktion mit dem Knopf
     private MouseAdapter mouseListener() {
         return new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (hovering) game.buttonClicked(pos);
+                if (hovering)
+                    game.buttonClicked(pos);
             }
 
             @Override
@@ -131,5 +145,3 @@ public class MaXxButton extends JButton {
         };
     }
 }
-
-
