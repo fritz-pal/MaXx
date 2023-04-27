@@ -17,10 +17,9 @@ public class SaveGameHandler {
         return true;
     }
 
-    public static Game loadGame(String path) throws IOException, ClassNotFoundException {
-        File file = new File(path);
+    public static Game loadGame(File file) throws IOException, ClassNotFoundException {
         if (!file.exists())
-            throw new IOException("File: " + path + " does not exist");
+            throw new IOException("File: " + file + " does not exist");
         ObjectInputStream stream = new ObjectInputStream(new FileInputStream(file));
         return (Game) stream.readObject();
     }

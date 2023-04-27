@@ -37,14 +37,13 @@ public class StartScreen extends JFrame {
         this.add(startButton);
 
         // Erstellen des Load Game Buttons
-        // Öffnet FileChooser
 
         JButton loadButton = new JButton("Load Game");
         loadButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
         loadButton.setForeground(Color.WHITE);
         loadButton.setBackground(new Color(0x514e4b));
         loadButton.setFocusable(false);
-        loadButton.addActionListener(e ->  new JFileChooser());
+        loadButton.addActionListener(e -> fileChooser());
         loadButton.setBounds(140, 100, 120, 50);
         this.add(loadButton);
 
@@ -68,7 +67,11 @@ public class StartScreen extends JFrame {
         fileChooser.setFileFilter(new FileNameExtensionFilter("Serialized", "ser"));
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            SaveGameHandler.loadGame(fileChooser.getSelectedFile());
+            try {
+                SaveGameHandler.loadGame(fileChooser.getSelectedFile());
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
