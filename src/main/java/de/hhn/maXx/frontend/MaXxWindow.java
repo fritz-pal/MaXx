@@ -4,9 +4,11 @@ import de.hhn.maXx.game.Field;
 import de.hhn.maXx.game.Game;
 import de.hhn.maXx.util.Direction;
 import de.hhn.maXx.util.IntVector2;
+import de.hhn.maXx.util.SaveGameHandler;
 import de.hhn.maXx.util.SoundType;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -21,7 +23,6 @@ import java.awt.event.KeyEvent;
  */
 public class MaXxWindow extends JFrame {
     private final MaXxButton[][] field = new MaXxButton[8][8];
-    private final JPanel fieldPanel = new JPanel();
     private final JoyStickButton diagonalButton;
     private final ScorePanel whiteScore;
     private final ScorePanel blackScore;
@@ -42,7 +43,18 @@ public class MaXxWindow extends JFrame {
         this.getContentPane().addKeyListener(keyListener());
         this.getContentPane().setFocusable(true);
 
-        // Parameter Spielfeld
+        //save button
+        JButton saveButton = new JButton("Save Game");
+        saveButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
+        saveButton.setForeground(Color.WHITE);
+        saveButton.setBackground(new Color(0x36, 0x39, 0x3F));
+        saveButton.setFocusable(false);
+        saveButton.addActionListener(e -> fileSaver());
+        saveButton.setBounds(930, 20, 150, 50);
+        this.add(saveButton);
+
+        //field panel
+        JPanel fieldPanel = new JPanel();
         fieldPanel.setBounds(0, 0, 800, 800);
         fieldPanel.setLayout(new GridLayout(8, 8));
         fieldPanel.setBackground(new Color(0x29, 0x2B, 0x2F));
@@ -149,5 +161,17 @@ public class MaXxWindow extends JFrame {
         JPanel emptyPanel = new JPanel();
         emptyPanel.setBackground(new Color(0x29, 0x2B, 0x2F));
         return emptyPanel;
+    }
+
+    private void fileSaver() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save your game");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("MaXx Save Game", "maxx"));
+        int returnValue = fileChooser.showSaveDialog(this);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            SaveGameHandler.saveGame(fileChooser.getSelectedFile(), game);
+        }
     }
 }

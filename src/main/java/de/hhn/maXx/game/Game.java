@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 
 public class Game implements Serializable {
-    private final transient MaXxWindow window;
+    private transient MaXxWindow window;
     private final Board board;
     private Fraction scoreW;
     private Fraction scoreB;
@@ -27,6 +27,11 @@ public class Game implements Serializable {
         this.scoreB = new Fraction(0, 1);
         this.whitesTurn = true;
         this.window.update();
+    }
+
+    public void makeWindow() {
+        window = new MaXxWindow(this);
+        window.update();
     }
 
     public Fraction getScoreW() {
