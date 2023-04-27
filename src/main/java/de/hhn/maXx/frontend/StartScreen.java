@@ -1,8 +1,10 @@
 package de.hhn.maXx.frontend;
 
 import de.hhn.maXx.game.Game;
+import de.hhn.maXx.util.SaveGameHandler;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 
 public class StartScreen extends JFrame {
@@ -23,7 +25,7 @@ public class StartScreen extends JFrame {
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setVerticalAlignment(JLabel.CENTER);
         titleLabel.setBounds(0, 0, 300, 100);
-        this.getContentPane().add(titleLabel, 0);
+        this.add(titleLabel);
 
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
@@ -32,7 +34,7 @@ public class StartScreen extends JFrame {
         startButton.setFocusable(false);
         startButton.addActionListener(e -> new Game());
         startButton.setBounds(25, 100, 100, 50);
-        this.getContentPane().add(startButton, 1);
+        this.add(startButton);
 
         JButton exitButton = new JButton("Exit");
         exitButton.setFont(new Font("Arial Black", Font.PLAIN, 14));
@@ -41,8 +43,20 @@ public class StartScreen extends JFrame {
         exitButton.setFocusable(false);
         exitButton.addActionListener(e -> System.exit(0));
         exitButton.setBounds(175, 100, 100, 50);
-        this.getContentPane().add(exitButton, 2);
+        this.add(exitButton);
 
         this.setVisible(true);
+    }
+
+    private void fileChooser() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select a save file");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Serialized", "ser"));
+        int returnValue = fileChooser.showOpenDialog(this);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            SaveGameHandler.loadGame(fileChooser.getSelectedFile());
+        }
     }
 }
