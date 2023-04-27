@@ -3,6 +3,7 @@ package de.hhn.maXx.game;
 import de.hhn.maXx.frontend.Sound;
 import de.hhn.maXx.util.*;
 
+import java.io.Serializable;
 import java.util.stream.IntStream;
 
 /**
@@ -13,7 +14,7 @@ import java.util.stream.IntStream;
  * @version 3, 27.04.23
  */
 
-public class Board {
+public class Board implements Serializable {
     private final Field[][] grid;
     private final Game game;
     private IntVector2 whitePos, blackPos;

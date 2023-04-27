@@ -1,5 +1,6 @@
 package de.hhn.maXx.util;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 /**
@@ -11,7 +12,7 @@ import java.math.BigInteger;
  * @author Henri Staudenrausch, Nadine Schoch, Dennis Mayer, Nico Vogel
  * @version 4, 20.12.2022
  **/
-public class Fraction extends Number implements Comparable<Fraction> {
+public class Fraction extends Number implements Comparable<Fraction>, Serializable {
     public static final Fraction ZERO = new Fraction(0, 1);
     protected BigInteger numerator;
     protected BigInteger denominator;

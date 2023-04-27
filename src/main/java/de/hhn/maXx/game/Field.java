@@ -3,6 +3,8 @@ package de.hhn.maXx.game;
 import de.hhn.maXx.util.FieldState;
 import de.hhn.maXx.util.Fraction;
 
+import java.io.Serializable;
+
 /**
  * Eine Klasse um die einzelnen Felder des Spielbretts zu beschreiben.
  * Im Konstruktor wird eine zufällige Fraction mit einem Wert zwischen 1 und 8
@@ -11,7 +13,7 @@ import de.hhn.maXx.util.Fraction;
  * @author Nadine Schoch, Henri Staudenrausch, Lukas Vier
  * @version 3, 27.04.22
  */
-public class Field {
+public class Field implements Serializable {
     private FieldState state;
     private Fraction fraction;
 

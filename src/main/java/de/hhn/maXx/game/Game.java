@@ -4,6 +4,8 @@ import de.hhn.maXx.frontend.MaXxWindow;
 import de.hhn.maXx.frontend.Sound;
 import de.hhn.maXx.util.*;
 
+import java.io.Serializable;
+
 /**
  * Klasse zum Managen des Spiels
  *
@@ -11,19 +13,20 @@ import de.hhn.maXx.util.*;
  * @version 3, 27.04.23
  */
 
-public class Game {
-    private final MaXxWindow window;
+public class Game implements Serializable {
+    private final transient MaXxWindow window;
     private final Board board;
     private Fraction scoreW;
     private Fraction scoreB;
-    private boolean whitesTurn = true;
+    private boolean whitesTurn;
 
     public Game() {
-        window = new MaXxWindow(this);
+        this.window = new MaXxWindow(this);
         this.board = new Board(this);
         this.scoreW = new Fraction(0, 1);
         this.scoreB = new Fraction(0, 1);
-        window.update();
+        this.whitesTurn = true;
+        this.window.update();
     }
 
     public Fraction getScoreW() {
