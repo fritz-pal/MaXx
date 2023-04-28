@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Im Konstruktor wird eine zufällige Fraction mit einem Wert zwischen 1 und 8
  * ausgewählt.
  *
- * @author Nadine Schoch, Henri Staudenrausch 215994, Lukas Vier 215997
+ * @author (Nadine Schoch Version 1), Henri Staudenrausch 215994, Lukas Vier 215997
  * @version 3, 27.04.22
  */
 public class Field implements Serializable {

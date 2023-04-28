@@ -8,7 +8,7 @@ import java.math.BigInteger;
  * Zähler und Nenner = BigInteger) realisiert und das Interface Comparable
  * implementiert.
  *
- * @author Henri Staudenrausch 215994, Nadine Schoch, Dennis Mayer 215964, Nico Vogel 215998
+ * @author Henri Staudenrausch 215994, (Nadine Schoch Version 1), Dennis Mayer 215964, Nico Vogel 215998
  * @version 4, 20.12.2022
  **/
 public class Fraction extends Number implements Comparable<Fraction> {
